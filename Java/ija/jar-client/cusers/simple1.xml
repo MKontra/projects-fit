@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="simple1" Name="simplest" Surname="simplest" Password_hash="simple1">
+  <Callendar Name="">
+    <Event Name="Normal1" Date="1241085660000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Repeating1" Date="1240783260000" Repeating="true" How_often="24" Category="101">
+      <Notices>
+        <Notice Author="simple1" Time_entered="1241030647956">Simple notice</Notice>
+        <Notice Author="simple1" Time_entered="1241030665412">another notice</Notice>
+      </Notices>
+      <Alerts>
+        <Alert Start="1240912860000" Repeatable="false" Interval="0" />
+      </Alerts>
+    </Event>
+    <Event Name="Another_simple" Date="1240804860000" Repeating="false" How_often="0" Category="102">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Samehour" Date="1240999260000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Samehour2" Date="1240956060000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="SH" Date="1240999260000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Onceaweek" Date="1240743660000" Repeating="true" How_often="168" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Otherinterval" Date="1240390860000" Repeating="true" How_often="0" Category="104">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Simpleevent" Date="1241215260000" Repeating="false" How_often="0" Category="103">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="new_event" Date="1341619260000" Repeating="false" How_often="0" Category="102">
+      <Notices>
+        <Notice Author="simple1" Time_entered="1341619166768">Notice body</Notice>
+      </Notices>
+      <Alerts>
+        <Alert Start="1341619260000" Repeatable="true" Interval="0" />
+      </Alerts>
+    </Event>
+  </Callendar>
+</User>
+

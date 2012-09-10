@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group Name="new_group_name1" Boss="shared2">
+  <Callendar Name="">
+    <Event Name="someevent" Date="1241114460000" Repeating="false" How_often="0" Category="103">
+      <Notices>
+        <Notice Author="shared1" Time_entered="1241034341525">Poznamka shared1</Notice>
+        <Notice Author="shared2" Time_entered="1241034709787">Notice body</Notice>
+        <Notice Author="shared2" Time_entered="1241034746845">rffrg</Notice>
+      </Notices>
+      <Alerts>
+        <Alert Start="1241035260000" Repeatable="false" Interval="0" />
+      </Alerts>
+    </Event>
+    <Event Name="new_event24343" Date="1240405260000" Repeating="true" How_often="50" Category="103">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+</Group>
+

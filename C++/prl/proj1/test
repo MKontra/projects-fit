@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ $# -lt 1 ];then
+    numbers=10;
+else
+    numbers=$1;
+fi;
+mpic++ --prefix /usr/local/share/OpenMPI -o es es.cpp
+dd if=/dev/random bs=1 count=$numbers of=numbers &> /dev/null
+let numbers=$numbers+1
+mpirun --prefix /usr/local/share/OpenMPI -np $numbers es
+rm -f es numbers

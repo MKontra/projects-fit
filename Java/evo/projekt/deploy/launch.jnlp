@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp spec="1.0+">
+    <information>
+        <title>PSOApplet</title>
+        <vendor>Cukor</vendor>
+        <homepage href=""/>
+        <description>PSOApplet</description>
+        <description kind="short">PSOApplet</description>
+        <offline-allowed/> 
+    </information>
+<update check="background"/>
+<security>
+<all-permissions/>
+</security>
+    <resources>
+<j2se version="1.5+"/>
+<jar href="PSOApplet.jar" main="true"/>
+<extension name="jogl" href="http://download.java.net/media/jogl/builds/archive/jsr-231-1.1.0/webstart/jogl.jnlp"/>
+<jar href="lib/org.jzy3d-0.8.3.jar"/>
+<jar href="lib/PSOlib.jar"/>
+</resources>
+    <applet-desc height="400" main-class="org.PSOApplet.PSODemoApplet" name="PSOApplet" width="600">
+
+    </applet-desc>
+</jnlp>

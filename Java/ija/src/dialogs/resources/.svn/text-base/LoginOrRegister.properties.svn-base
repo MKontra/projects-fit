@@ -1,0 +1,8 @@
+jLabel1.text=Login:
+jTextField1.text=
+jLabel2.text=Password
+jPasswordField1.text=
+jButton1.text=Login
+jButton2.text=Register
+logindialog.title=Login
+jButton3.text=Close

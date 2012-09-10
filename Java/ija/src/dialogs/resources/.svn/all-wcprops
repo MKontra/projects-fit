@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/euprojects/!svn/ver/136/kalendar/src/dialogs/resources
+END
+AddGroupEvent.properties
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/AddGroupEvent.properties
+END
+AddGroupNotice.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/AddGroupNotice.properties
+END
+AddEvent.properties
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/AddEvent.properties
+END
+ConnectionOptions.properties
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/euprojects/!svn/ver/125/kalendar/src/dialogs/resources/ConnectionOptions.properties
+END
+CopyEvent.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/CopyEvent.properties
+END
+ViewEvent.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/ViewEvent.properties
+END
+ViewNotice.properties
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/ViewNotice.properties
+END
+EventList.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/euprojects/!svn/ver/136/kalendar/src/dialogs/resources/EventList.properties
+END
+LoginOrRegister.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/LoginOrRegister.properties
+END
+AddAlert.properties
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/AddAlert.properties
+END
+AddOrEditNotice.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/AddOrEditNotice.properties
+END
+ViewAlert.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/ViewAlert.properties
+END
+NewJDialog.properties
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/euprojects/!svn/ver/109/kalendar/src/dialogs/resources/NewJDialog.properties
+END

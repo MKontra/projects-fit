@@ -1,0 +1,56 @@
+#define STEPS   4   /* Nebo jiný po?et; po?et synchronizovaných krok? */
+#define NPROC   3   /* Nebo jiný po?et; po?et proces? */
+
+int count[NPROC];   /* Sem ka?dý proces p?i?ítá jedni?ku (jen u sebe) */
+int KS;
+
+/* Sem dejte va?e vlastní globální prom?nné */
+int turn;
+
+#define mENTER	0
+#define mIN	1
+#define mOUT	2
+
+int flag[NPROC];
+
+active [NPROC] proctype P() { 
+    int j;
+    count[_pid] = 0;
+
+end:
+    /* Zde bude ENTRY sekce - ?ást p?ed kritickou sekcí */
+    flag[_pid] = mENTER;
+    turn != _pid;
+    if
+      ::(flag[turn] == mOUT) -> turn = _pid;
+      ::else -> skip;
+    fi
+
+    flag[_pid] = mIN;
+    
+    j = 0;
+    do
+      :: (j < N ) ->
+        if 
+        :: ( j != _pid && flag[j] == mIN ) -> goto end;
+        :: else -> skip;
+	fi
+      :: else ->
+         break;
+    od;
+    
+progress:                       /* ?ivost */    
+    KS++;
+    /* Zde je kritická sekce */
+    count[_pid]++;
+    assert(KS == 1);         /* Správnost */
+    KS--;
+
+    /* Zde bude EXIT sekce - za kritickou sekcí */
+    flag[_pid] = mOUT;
+
+    if
+    :: (count[_pid] < STEPS) -> goto end;
+    :: (count[_pid] >= STEPS) -> skip;
+    fi;
+}

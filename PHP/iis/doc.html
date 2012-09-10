@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1250">
+	<TITLE>Projekt IIS</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Patrik Šebeň">
+	<META NAME="CHANGED" CONTENT="20091207;17082900">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { text-align: left }
+		DT { font-weight: bold }
+		TH P { text-align: left }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="sk-SK" DIR="LTR">
+<H1>Hotel</H1>
+<DL>
+	<DT><!-- Nahradte názvem svého zadání -->Autoři 
+	</DT><DD>
+	První autor <A HREF="mailto:xautor01@stud.fit.vutbr.cz">xkontr00@stud.fit.vutbr.cz</A>
+	- správa uživatelů a uživatelské rozhraní 
+	</DD><DD>
+	Druhý autor <A HREF="mailto:xautor02@stud.fit.vutbr.cz">xseben00@stud.fit.vutbr.cz</A>
+	- databázový subsystém 
+	</DD><DT>
+	URL aplikace 
+	</DT><DD>
+	<A HREF="http://www.stud.fit.vutbr.cz/~xseben00/">http://www.stud.fit.vutbr.cz/~xseben00/</A>
+		</DD><DD STYLE="margin-bottom: 0.5cm">
+	<BR><BR>
+	</DD></DL>
+<H2>
+Uživatelé systému pro testování</H2>
+<TABLE WIDTH=222 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+	<COL WIDTH=61>
+	<COL WIDTH=60>
+	<COL WIDTH=88>
+	<TR>
+		<TH WIDTH=61>
+			<P>Login</P>
+		</TH>
+		<TH WIDTH=60>
+			<P>Heslo</P>
+		</TH>
+		<TH WIDTH=88>
+			<P>Role</P>
+		</TH>
+	</TR>
+	<TR>
+		<TD WIDTH=61>
+			<P>root<SPAN LANG="en-US">123</SPAN></P>
+		</TD>
+		<TD WIDTH=60>
+			<P>root<SPAN LANG="en-US">123</SPAN></P>
+		</TD>
+		<TD WIDTH=88>
+			<P>Administrátor</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=61>
+			<P>user1<SPAN LANG="en-US">23</SPAN></P>
+		</TD>
+		<TD WIDTH=60>
+			<P>user1<SPAN LANG="en-US">23</SPAN></P>
+		</TD>
+		<TD WIDTH=88>
+			<P>Zamestnanec</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2>Implementace</H2>
+<P>Prihlásenie a odhlásenie do systému zabezpečuje sada skriptov
+login.php a logout.php. Odhlásenie po dlhšej dobe nečinnosti vykoná
+skript utils.php konkrétne funkcia checkInactivity().</P>
+<P>Po úspešnom prihlásení nám index.php ponúkne menu podľa stupňa
+nášho oprávnenia. Jednotlivé položky v menu zabepečujú nasledujúce
+php skripty :</P>
+<UL>
+	<LI><P><FONT SIZE=3><B>Zákazník</B></FONT> - zakaznik.php a
+	zakaznik_ins.php pre zobrazenie vkladanie a editáciu zakazníkov</P>
+	<LI><P><B>Rezervácia</B> - rezervacia.php a rezervacia_ins.php pre
+	zobrazenie vkladanie a editáciu rezervacii</P>
+	<LI><P><B>Ubytovanie</B> :</P>
+	<LI><P>ubytovanie.php a ubytovanie_ins.php pre zobrazenie vkladanie
+	a editáciu pobytov 
+	</P>
+	<LI><P>vyuctuj_pobyt.php pre výpočet výslednej sumy a následné
+	realizovanie platby</P>
+	<LI><P>add_service.php a list_service.php pre zobrazenie vkladanie a
+	editáciu služieb ktoré boli požadované</P>
+	<LI><P><B>Platba</B> - payment.php a payment_ins.php pre zobrazenie
+	vkladanie a editáciu platieb 
+	</P>
+	<LI><P><B>Export a Import </B>- export.php , import.php a
+	generateXml.php pre export a import vybranej tabuľky v XML formáte</P>
+	<LI><P><B>Služby </B>- services.php a services_ins.php pre
+	zobrazenie vkladanie a editáciu služieb</P>
+	<LI><P><B>Izby </B>- room.php a room_ins.php pre zobrazenie
+	vkladanie a editáciu izieb</P>
+	<LI><P><B>Užívatelia</B> - users.php a usrs_ins.php pre zobrazenie
+	vkladanie a editáciu užívateľov</P>
+</UL>
+<P>Pripojenie do databázy a zmeny udájov pre pripojenie nájdeme v
+súbore connect.php.</P>
+<P>Systém bol vyvíjaný a testovaný na prehliadači Mozilla Firefox
+preto sú možne drobné odlišnosti pri použití iných prehliadačov. 
+</P>
+<P><BR><BR>
+</P>
+<H2>Instalace</H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><B>Stručně popište postup
+	instalace na server</B></P>
+	<LI><P STYLE="margin-bottom: 0cm">rozbaliť archív xlogin00.zip</P>
+	<LI><P STYLE="margin-bottom: 0cm">nastaviť mysql databázu a
+	importovať sql skript db.sql</P>
+	<LI><P STYLE="margin-bottom: 0cm">nahrať obsah adresára IIS na
+	server</P>
+	<LI><P STYLE="margin-bottom: 0cm">nastaviť lokáciu databázy a údaje
+	pre prístup v súbore connect.php</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><B>Softwarové požadavky </B>
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">PHP v. 5.2.0</P>
+	<LI><P STYLE="margin-bottom: 0cm">MySQL v. 5.1.41 
+	</P>
+</UL>
+</BODY>
+</HTML>

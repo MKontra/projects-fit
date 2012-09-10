@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/euprojects/!svn/ver/159/kalendar/src/COMMON
+END
+stylesheet.css
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/euprojects/!svn/ver/77/kalendar/src/COMMON/stylesheet.css
+END
+Event_notice.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Event_notice.java
+END
+package-list
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/euprojects/!svn/ver/77/kalendar/src/COMMON/package-list
+END
+Callendar.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Callendar.java
+END
+Callendar_event.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Callendar_event.java
+END
+Group_membership.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Group_membership.java
+END
+Event_alert.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Event_alert.java
+END
+test_xml_serializer.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/euprojects/!svn/ver/159/kalendar/src/COMMON/test_xml_serializer.java
+END
+Group.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/euprojects/!svn/ver/159/kalendar/src/COMMON/Group.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/euprojects/!svn/ver/92/kalendar/src/COMMON/User.java
+END

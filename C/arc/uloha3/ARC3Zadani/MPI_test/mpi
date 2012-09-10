@@ -1,0 +1,31 @@
+#!/bin/ksh
+#
+# How to type password (passphrase) only once:
+#	cd
+#	ssh-keygen -t rsa # Press "Enter", then 2x type non-empty(!) passphrase
+#	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys2
+#
+
+MPIEXEC=${MPIEXEC-"mpptest"}
+MPIOPTS=${MPIOPTS-"-nolocal --prefix /usr/local/share/OpenMPI"}
+MPIHOSTS=${MPIHOSTS-"PCM105-09"}
+
+if [ $# -eq 0 ] ; then
+	echo "Usage: `basename $0` number_of_processes [executable]"
+	exit
+fi
+NP=$1
+shift
+if [ $# -ge 1 ] ; then
+	MPIEXEC=$1
+	shift
+fi
+TMP=/tmp/`basename $0`.$$
+test -f $TMP && exit 1
+trap "" 2 3 15
+echo "$MPIHOSTS" | tr " " "\012" > $TMP
+eval `ssh-agent` >/dev/null
+ssh-add >/dev/null
+mpirun -np $NP $MPIOPTS -machinefile $TMP $MPIEXEC "$@"
+test -f $TMP && rm $TMP
+eval `ssh-agent -k` >/dev/null

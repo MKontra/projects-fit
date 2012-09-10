@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="shared1" Name="share" Surname="share" Password_hash="shared1">
+  <Callendar Name="">
+    <Event Name="MyEvent" Date="1241089260000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="MyRepeating" Date="1240394460000" Repeating="true" How_often="48" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+  <Groups>
+    <Group Name="shared1leadds" Boss="true" />
+    <Group Name="shared2Leads" Boss="false" />
+    <Group Name="new_group_name1" Boss="false" />
+  </Groups>
+</User>
+

@@ -1,0 +1,449 @@
+package myserver;
+
+import COMMON.*;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
+import org.jdom.*;
+import org.jdom.input.*;
+import org.jdom.output.*;
+
+/**
+ * Handle request of client according to packet' content.
+ * @author Matus Kontra.
+ */
+public class RequestHandler {
+
+     /**
+      * Represents connection asociated with request hander.
+      */
+     private ConnectionManager.Connection c;
+     /**
+      * Represents connection manager object asociated with request hander.
+      */
+     private ConnectionManager cntx;
+     /**
+      * Represents server controler object asociated with request hander.
+      */
+     private ServerController sc;
+     /**
+      * Creates RequestHandler object with specified Connection object and ConnectionManager object asociated with it, both specified by parameters.
+      * @param c
+      * @param context
+      */
+     public RequestHandler(ConnectionManager.Connection c, ConnectionManager context) {
+	  this.c = c;
+	  this.cntx = context;
+	  this.sc = ServerController.getDefault();
+	  process();
+     }
+     private static SAXBuilder builder = new SAXBuilder();
+
+     /**
+      * Returns XML Element representation of XML Element in string form given as a parameter.
+      * @param in string representation of XML Element.
+      * @return XML Element representation of string object.
+      * @throws java.lang.Exception
+      */
+     public static Element getStringAsRootElement(String in) throws Exception {
+	  return builder.build(new ByteArrayInputStream(in.getBytes())).getRootElement();
+     }
+     private static XMLOutputter outputer = new XMLOutputter();
+     /**
+      * Returns string representation of XML Element given as a parameter.
+      * @param e XML Element object.
+      * @return string reprsesentation of XML Element  object.
+      * @throws java.lang.Exception
+      */
+     public static String getElementAsDocument(Element e) throws Exception {
+	  return outputer.outputString(new Document(e));
+     }
+     /**
+      * Inludes main loop of request handler object. In loop are analyzed packets from client and corespondent action in local cache is performed. 
+      * And after it response packet is send to corespondent client.
+      */
+     public void process() {
+	  try {
+	       while (true) {
+		    String pck = c.getNextPacket();
+		    System.out.println("In main loop in connection for " + c.getUser());
+		    System.out.println("Received pck----------");
+		    System.out.println(pck);
+		    System.out.println("----------------------");
+		    String operation = pck.substring(0, 8);
+		    String rest = pck.substring(9, pck.length());
+		    if (operation.compareTo("ADDEVENT") == 0) //pridaj udalost
+		    {
+			 //uzivatel chce vlozit udalost
+			 User commiter = sc.getUser(c.getUser());
+			 Callendar_event newevnt = Callendar_event.fromXML(getStringAsRootElement(rest));
+			 boolean success = sc.addEvent(commiter, newevnt);
+			 if (success) {
+			      c.sendDataHere("EVEADDOK " + newevnt.get_name());
+			 } else {
+			      c.sendDataHere("EVEADDFL " + newevnt.get_name());
+			 }
+		    } else if (operation.compareTo("DELEVENT") == 0) //zmaz udalost
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 boolean success = sc.removeEvent(commiter, rest);
+
+			 if (success) {
+			      c.sendDataHere("EVEDELOK " + rest);
+			 } else {
+			      c.sendDataHere("EVEDELFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("CRTGROUP") == 0) //vytvor skupinu - ja leader
+		    {
+			 boolean success = sc.createGroup(rest, c.getUser());
+
+			 if (success) {
+			      c.sendDataHere("GRPCRTOK " + rest);
+			 } else {
+			      c.sendDataHere("GRPCRTFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("DELGROUP") == 0) //zmaz skupinu
+		    {
+			 List<User> members = sc.listMembers(sc.getGroup(rest));
+			 boolean success = sc.deleteGroup(rest, c.getUser());
+
+			 if (success) {
+			      c.sendDataHere("GRPDELOK " + rest);
+
+			      for (User u : members) {
+				   try {
+					System.out.println("Sending to " + u.get_login());
+					cntx.getConnection(u.get_login()).sendDataHere("GRPMBSRV " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("GRPDELFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("CPYEVENT") == 0) //kopiruj udalost uzivatelovi
+		    {
+			 User offerer = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[1];
+			 String receivername = tkns[0];
+
+			 User receiver = sc.getUser(receivername);
+
+			 boolean success = sc.offerCopy(eventname, c.getUser(), receivername);
+			 if (success) {
+			      try {
+				   ConnectionManager.Connection con = cntx.getConnection(receivername);
+				   String eventbody = getElementAsDocument(sc.getEvent(offerer.get_login(), eventname).toXML());
+				   con.sendDataHere("CPYOFFER " + offerer.get_login() + " " + eventbody);
+				   c.sendDataHere("CPYEVEOK " + rest);
+			      } catch (NullPointerException npe) {
+				   c.sendDataHere("CPYEVEFL " + rest);
+				   npe.printStackTrace();
+			      }
+			 } else {
+			      c.sendDataHere("CPYEVEFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("ACCEVENT") == 0) //potvrd kopirovanie udalosti
+		    {
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[1];
+			 String receivername = tkns[0];
+
+			 sc.acceptCopy(eventname, receivername, c.getUser());
+
+		    } else /*
+		    if ( operation.compareTo("RFSEVENT") == 0 ) //odmietni udalost
+		    {
+		    User confirmer = sc.getUser(c.getUser());
+		    sc.refuseCopy(rest, confirmer);
+		    }else*/ if (operation.compareTo("DELMEMBR") == 0) //zmaz clena skupiny
+		    {
+			 String[] tkns = rest.split(" ");
+			 String groupname = tkns[1];
+			 String receivername = tkns[0];
+			 User confirmer = sc.getUser(c.getUser());
+			 if (!sc.isLeader(confirmer, sc.getGroup(groupname))) {
+			      System.out.println("Not Leader ");
+			      continue;
+			 }
+
+			 sc.removeGroupMembership(groupname, receivername);
+			 try {
+			      cntx.getConnection(receivername).sendDataHere("GRPMBSRV " + rest);
+			 } catch (NullPointerException npe) {
+			      System.out.println("Failed to notify remote user");
+			 }
+		    } else if (operation.compareTo("OFFERMBS") == 0) //ponukni clenstvo v skupine
+		    {
+			 User offerer = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String group = tkns[1];
+			 String receivername = tkns[0];
+
+			 User receiver = sc.getUser(receivername);
+
+			 boolean success = sc.offerMembership(group, receivername);
+			 if (success) {
+			      cntx.getConnection(receivername).sendDataHere("MBSOFFER " + group + " " + getElementAsDocument(sc.getGroup(group).toXML()));
+			      c.sendDataHere("MBSOFFOK ");
+			 } else {
+			      c.sendDataHere("MBSOFFFL ");
+			 }
+		    } else if (operation.compareTo("ACPTMBSH") == 0) //prijmi ponuku clenstva
+		    {
+			 sc.acceptMembership(rest, c.getUser());
+
+			 cntx.getConnection(sc.getGroup(rest).get_boss()).sendDataHere("MBSKDONE " + c.getUser() + " " + sc.getGroup(rest).get_group_name());
+		    } else if (operation.compareTo("REFUSMBS") == 0) //odmietni clenstvo v skupine
+		    {
+			 User confirmer = sc.getUser(c.getUser());
+			 sc.refuseMembership(rest, c.getUser());
+		    } else if (operation.compareTo("ADDGRPEV") == 0) //pridaj skupinovu udalost leader
+		    {
+
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+
+			 Group tog = sc.getGroup(receivergroup);
+			 Callendar_event newevnt = Callendar_event.fromXML(getStringAsRootElement(rest.substring(receivergroup.length() + 1)));
+			 boolean success = sc.addGroupEvent(commiter, tog, newevnt);
+			 if (success) {
+			      c.sendDataHere("ADGREVOK " + newevnt.get_name());
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("GRPEVADD " + rest);
+				   } catch (NullPointerException e) {
+
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("ADGREVFL " + newevnt.get_name());
+			 }
+
+		    } else if (operation.compareTo("REMGRPEV") == 0) //odober skupinovu udalost leader
+		    {
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String event_name = tkns[1];
+			 Group tog = sc.getGroup(receivergroup);
+
+			 boolean success = sc.removeGroupEvent(commiter, tog, event_name);
+			 if (success) {
+			      c.sendDataHere("RMGREVOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("GRPEVERM " + rest);
+				   } catch (NullPointerException e) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("RMGREVFL " + rest);
+			 }
+		    } else if (operation.compareTo("ADDEVNTC") == 0) //pridaj poznamku na udalost
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[0];
+
+			 Event_notice newevnt = Event_notice.fromXML(getStringAsRootElement((rest.substring(eventname.length() + 1))));//
+			 sc.addEventNotice(commiter.get_login(), eventname, newevnt);
+
+
+
+		    } else if (operation.compareTo("REMEVNTC") == 0) //odober poznamku udalosti
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[0];
+
+			 Event_notice newevnt = Event_notice.fromXML(getStringAsRootElement(rest.substring(eventname.length() + 1)));
+			 sc.removeEventNotice(commiter.get_login(), eventname, newevnt);
+		    } else if (operation.compareTo("EDITNOTE") == 0) //uprav poznamku udalosti
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[0];
+
+			 Event_notice newevnt = Event_notice.fromXML(getStringAsRootElement(rest.substring(eventname.length() + 1)));//rest.substring(eventname.length()+1)
+			 sc.editEventNotice(commiter.get_login(), eventname, newevnt);
+		    } else if (operation.compareTo("ADDALERT") == 0) //pridaj upozornenie na udalost
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[0];
+
+			 Event_alert newalrt = Event_alert.fromXML(getStringAsRootElement(rest.substring(eventname.length() + 1)));//
+			 sc.addEventAlert(commiter.get_login(), eventname, newalrt);
+		    } else if (operation.compareTo("REMALERT") == 0) //odober upozornenie na udalost
+		    {
+			 User commiter = sc.getUser(c.getUser());
+			 String[] tkns = rest.split(" ");
+			 String eventname = tkns[0];
+
+			 Event_alert newalrt = Event_alert.fromXML(getStringAsRootElement(rest.substring(eventname.length() + 1)));//
+			 sc.removeEventAlert(commiter.get_login(), eventname, newalrt);
+		    } else if (operation.compareTo("ADDGRPAL") == 0) //skupinove upozornenie
+		    {
+
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String relevantevent = tkns[1];
+
+			 //Group tog = sc.getGroup(receivergroup);
+			 Event_alert newalrt = Event_alert.fromXML(getStringAsRootElement(rest.substring(relevantevent.length() + 1 + receivergroup.length() + 1)));
+			 boolean success = sc.addGroupAlert(c.getUser(), receivergroup, relevantevent, newalrt);
+			 if (success) {
+			      c.sendDataHere("ADGRALOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("ADGRPALT " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("ADGRALFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("REMGRPAL") == 0) //zmaz skupinove upozornenie
+		    {
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String relevantevent = tkns[1];
+
+			 Event_alert newalrt = Event_alert.fromXML(getStringAsRootElement(rest.substring(relevantevent.length() + 1 + receivergroup.length() + 1)));
+			 boolean success = sc.removeGroupAlert(c.getUser(), receivergroup, relevantevent, newalrt);
+			 if (success) {
+			      c.sendDataHere("RMGRALOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("GREVNTRM " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("RMGRALFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("ADDGRPNT") == 0) //pridaj skupinovu poznamku
+		    {
+
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String relevantevent = tkns[1];
+
+			 //Group tog = sc.getGroup(receivergroup);
+			 Event_notice newalrt = Event_notice.fromXML(getStringAsRootElement(rest.substring(relevantevent.length() + 1 + receivergroup.length() + 1)));
+			 boolean success = sc.addGroupNotice(c.getUser(), receivergroup, relevantevent, newalrt);
+			 if (success) {
+			      c.sendDataHere("ADGRNTOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("ADDGRPNT " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("ADGRNTFL " + rest);
+			 }
+
+		    } else if (operation.compareTo("DELGRPNT") == 0) //zmaz skupinovu poznamku
+		    {
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String relevantevent = tkns[1];
+
+			 //Group tog = sc.getGroup(receivergroup);
+			 Event_notice newalrt = Event_notice.fromXML(getStringAsRootElement(rest.substring(relevantevent.length() + 1 + receivergroup.length() + 1)));
+			 boolean success = sc.removeGroupNotice(c.getUser(), receivergroup, relevantevent, newalrt);
+			 if (success) {
+			      c.sendDataHere("RMGRNTOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("REMGRPNT " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("RMGRNTFL " + rest);
+			 }
+		    } else if (operation.compareTo("EDTGRPNT") == 0) //uprav skupinovu poznamku
+		    {
+			 User commiter = sc.getUser(c.getUser());
+
+			 String[] tkns = rest.split(" ");
+			 String receivergroup = tkns[0];
+			 String relevantevent = tkns[1];
+
+			 //Group tog = sc.getGroup(receivergroup);
+			 Event_notice newalrt = Event_notice.fromXML(getStringAsRootElement(rest.substring(relevantevent.length() + 1 + receivergroup.length() + 1)));
+			 boolean success = sc.editGroupNotice(c.getUser(), receivergroup, relevantevent, newalrt);
+			 if (success) {
+			      c.sendDataHere("EDGRNTOK " + rest);
+			      List<User> members = sc.listMembers(sc.getGroup(receivergroup));
+			      for (User u : members) {
+				   try {
+					cntx.getConnection(u.get_login()).sendDataHere("EDTGRPNT " + rest);
+				   } catch (NullPointerException npe) {
+				   }
+			      }
+			 } else {
+			      c.sendDataHere("EDGRNTFL " + rest);
+			 }
+		    } else if (operation.compareTo("GETALLNF") == 0) //vymirrorovanie lokalnej cache
+		    {
+			 //posle moj kalendar
+			 //posle mi kalendare skupin ktorych som clenom
+			 String tosend = "";
+			 String userdata = getElementAsDocument(sc.getUser(c.getUser()).toXML());
+			 //dlzka kolko sa ma nacitat
+			 tosend = tosend + Integer.toString(userdata.length()) + " " + userdata + " ";
+
+			 List<Group> grps = sc.getUserGroups(sc.getUser(c.getUser()));
+			 for (Group g : grps) {
+			      String grp = getElementAsDocument(g.toXML());
+			      tosend = tosend + Integer.toString(grp.length()) + " " + grp + " ";
+			 }
+
+			 c.sendDataHere("ALLUINFO " + tosend);
+
+		    } else if (operation.compareTo("STORESVR") == 0) {
+		    //skopiruj data od uzivatela na server
+
+
+
+		    } else if (operation.compareTo("SYNTODSC") == 0) {
+			 sc.syncToDisc();
+		    } else if (operation.compareTo("CLIENTOF") == 0) //ukonci spojenie
+		    {
+			 break;
+		    }
+	       }
+	  } catch (Exception e) {
+	       e.printStackTrace();
+	       System.out.println("Tak ti treba ty blb");
+	  }
+     }
+}

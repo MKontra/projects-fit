@@ -1,0 +1,33 @@
+CXX = gcc
+RM = rm -f
+
+#CFLAGS = -pedantic -Wall -ansi -g0 -s -O3
+CFLAGS = -g -std=gnu99 -Wall 
+
+EXEC = proc trans
+
+proc_sources = proc.c
+trans_sources = trans.c
+
+trans_OBJFILES := $(trans_sources:.c=.o)
+proc_OBJFILES := $(proc_sources:.c=.o)
+
+.PHONY : all
+
+all : $(EXEC)
+
+proc: $(proc_OBJFILES)
+	$(CXX) $(CFLAGS) -o $@ $(proc_OBJFILES)
+
+trans: $(trans_OBJFILES)
+	$(CXX) $(CFLAGS) -o $@ $(trans_OBJFILES)
+
+%.o : %.c 
+	$(CXX) $(CFLAGS) -c $< -o $@
+
+### Zavislosti modulu
+proc.o:
+trans.o:
+
+clean:
+	$(RM) *.o core $(EXEC)

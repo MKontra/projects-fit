@@ -1,0 +1,5 @@
+#!/bin/bash
+numbers=`wc -c numbers | awk '{ print ($1-3) }'`
+mpic++ --prefix /usr/local/share/OpenMPI -o ba ba.cpp &>/dev/null
+mpirun --prefix /usr/local/share/OpenMPI -np $numbers ba
+rm -f ba >/dev/null

@@ -1,0 +1,108 @@
+int d;
+int m;
+int r;
+string vyslednyDen;
+string pokracovat;
+int rdiv4;
+int rmod4;
+int rdiv100;
+int rmod100;
+int rdiv400;
+int rmod400;
+int pocet;
+int prestupnyRok;
+
+int main()
+{
+  pokracovat = ("a");
+  while (pokracovat == "a")
+  {
+    cout << "Zadejte den\n";
+    cin >> d;
+    cout << "Zadany den: " << d << "\n";
+    
+    cout << "Zadejte mesic\n";
+    cin >> m;
+    cout << "Zadany mesic: " << m << "\n";
+
+    cout << "Zadejte rok\n";
+    cin >> r;
+    cout << "Zadany rok: " << r << "\n";
+
+    rdiv4 = r / 4;
+    rmod4 = r - (rdiv4 * 4);
+    
+    rdiv100 = r / 100;
+    rmod100 = r - (rdiv100 * 100);
+    
+    rdiv400 = r / 400;
+    rmod400 = r - (rdiv400 * 400);
+
+    prestupnyRok = ((rmod4 == 0) - (rmod100 == 0) + (rmod400 == 0));
+    pocet = (d + 30 * m + (m > 1) - 2 * (m > 2) + (m > 3) + (m > 5) + (m > 7) + (m > 8) + (m > 10) 
+            + 365 * (r - 1) + rdiv4 - rdiv100 + rdiv400);
+
+    if (((m <= 2) + (prestupnyRok)) == 2)
+    {   
+       pocet = pocet - 1;
+    }
+    else
+    {
+    }
+    
+    while (pocet >= 7)
+    {
+       pocet = pocet - 7;
+    }
+
+    if (pocet == 0)
+    {
+       vyslednyDen = "Patek";
+    }
+    else
+    {
+      if (pocet == 1)
+      {
+        vyslednyDen = "Sobota";
+      }
+      else
+      {
+        if (pocet == 2)
+        {
+          vyslednyDen = "Nedele";
+        }
+        else
+        {
+          if (pocet == 3)
+          {
+            vyslednyDen = "Pondeli";
+          }
+          else
+          {
+            if (pocet == 4)
+            {
+              vyslednyDen = "Utery";
+            }
+            else
+            {
+              if (pocet == 5)
+              {
+                vyslednyDen = "Streda";
+              }
+              else
+              {
+                vyslednyDen = "Ctvrtek";
+              }
+            }
+          }
+        }
+      }
+    }  
+
+    cout << "Zadanem datumu odpovida den: ";
+    cout << vyslednyDen;
+    cout << "\n";
+    cout << "Zopakovat vypocet pro jine datum? (\"a\"/\"n\")\n";
+    cin >> pokracovat;
+  }
+}

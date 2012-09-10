@@ -1,0 +1,9 @@
+total 40
+-rw-r--r-- 1 xkontr00 vti     1 Apr 10 22:37 blrg
+-rwx------ 1 xkontr00 vti     0 Apr 14 15:14 data
+-rw-r--r-- 1 xkontr00 vti    65 Apr 14 10:13 makefile
+-rw-r--r-- 1 xkontr00 vti    56 Apr 14 10:13 makefile~
+-rwxr-xr-x 1 xkontr00 vti 17263 Apr 14 11:42 shell
+-rw-r--r-- 1 xkontr00 vti  7527 Apr 14 11:44 shell.c
+-rw-r--r-- 1 xkontr00 vti  7527 Apr 14 11:43 shell.c~
+--wxr-xr-T 1 xkontr00 vti     0 Apr 14 10:48 shit

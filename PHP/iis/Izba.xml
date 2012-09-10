@@ -1,0 +1,17 @@
+
+
+<Izba>
+
+<columnnames>
+
+<column>cisloIZ</column><column>pocetL</column><column>cena</column><column>stav</column><column>vybava</column>
+</columnnames>
+
+
+<rows>
+
+<row><val>100</val><val>2</val><val>430</val><val>0</val><val>zaklad</val></row><row><val>101</val><val>2</val><val>430</val><val>0</val><val>zaklad</val></row><row><val>102</val><val>2</val><val>430</val><val>0</val><val>zaklad</val></row><row><val>103</val><val>2</val><val>430</val><val>1</val><val>zaklad</val></row><row><val>104</val><val>2</val><val>430</val><val>0</val><val>zaklad</val></row>
+
+</rows>
+
+</Izba>

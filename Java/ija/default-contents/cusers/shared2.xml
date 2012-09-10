@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="shared2" Name="sh2" Surname="sh2" Password_hash="shared2">
+  <Callendar Name="">
+    <Event Name="MyEvent" Date="1241042460000" Repeating="false" How_often="0" Category="102">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+  <Groups>
+    <Group Name="shared2Leads" Boss="true" />
+  </Groups>
+</User>
+

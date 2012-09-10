@@ -1,0 +1,82 @@
+8
+
+dir
+160
+https://svn.origo.ethz.ch/euprojects/kalendar/src/myserver
+https://svn.origo.ethz.ch/euprojects
+
+
+
+2009-04-29T20:11:04.012232Z
+157
+kontra_matus
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+11c3083a-d3d2-4b7f-ab9d-7e2d041a9bda
+
+groups
+dir
+
+users
+dir
+
+RequestHandler.java
+file
+
+
+
+
+2009-04-29T20:19:02.000000Z
+8ca0648fa291640e1f70b8717f4c32a8
+2009-04-29T20:11:04.012232Z
+157
+kontra_matus
+
+Server.java
+file
+
+
+
+
+2009-04-29T19:18:29.000000Z
+b9aa630c34377ead1c2977256651e716
+2009-04-29T19:18:22.965927Z
+155
+kontra_matus
+
+ConnectionManager.java
+file
+
+
+
+
+2009-04-29T18:41:18.000000Z
+3a2050c06d415ac961e32f7ef199207f
+2009-04-29T18:06:43.435776Z
+152
+kontra_matus
+
+ServerController.java
+file
+
+
+
+
+2009-04-29T20:19:02.000000Z
+5c11bb6e078a033c7ad05c3d5fc78409
+2009-04-29T20:11:04.012232Z
+157
+kontra_matus
+

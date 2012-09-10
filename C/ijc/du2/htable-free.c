@@ -1,0 +1,30 @@
+/*
+	filename: htable-free.c
+	meno: Kontra Matus	
+	fakulta: FIT
+	uloha: 2 - B
+	17.4.2008
+	compiler: GCC-4.2.3
+*/
+
+#include "htable.h"
+#include <stdlib.h>
+
+/*   htable_free
+	- vola clear na vymazanie zaznamov
+	-uvolni samotnu strukturu
+*/
+
+void
+htable_free ( htable_ptr table )
+{
+	htable_clear ( table );
+	
+	free ( table->headers );
+	free ( table );
+	
+	table = NULL;	
+
+
+}
+

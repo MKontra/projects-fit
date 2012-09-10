@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="simple2" Name="simmy" Surname="simmy" Password_hash="simple2">
+  <Callendar Name="">
+    <Event Name="SimpleEvent" Date="1240956060000" Repeating="false" How_often="0" Category="102">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Repeating1" Date="1240999260000" Repeating="true" How_often="12" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Simple2" Date="1241042460000" Repeating="false" How_often="0" Category="103">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="SameHour1" Date="1240977660000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="Samehour2" Date="1240977660000" Repeating="false" How_often="0" Category="101">
+      <Notices>
+        <Notice Author="simple2" Time_entered="1241031480744">MyCalendar-MyNotice</Notice>
+      </Notices>
+      <Alerts />
+    </Event>
+    <Event Name="WeirdInterval" Date="1240365660000" Repeating="true" How_often="25" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+</User>
+

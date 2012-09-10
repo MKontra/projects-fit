@@ -1,0 +1,38 @@
+(Spin Version 4.2.6 -- 27 October 2005)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	- (not selected)
+	assertion violations	+
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	+
+
+State-vector 64 byte, depth reached 66, errors: 0
+     194 states, stored
+     303 states, matched
+     497 transitions (= stored+matched)
+       0 atomic steps
+hash conflicts: 0 (resolved)
+
+Stats on memory usage (in Megabytes):
+0.014 	equivalent memory usage for states (stored*(State-vector + overhead))
+0.304 	actual memory usage for states (unsuccessful compression: 2173.31%)
+	State-vector as stored = 1557 byte + 8 byte overhead
+2.097 	memory used for hash table (-w19)
+0.320 	memory used for DFS stack (-m10000)
+0.123 	other (proc and chan stacks)
+0.099 	memory lost to fragmentation
+2.622 	total actual memory usage
+
+unreached in proctype P
+	line 26, "pan_in", state 5, "turn = _pid"
+	line 46, "pan_in", state 29, "KS = (KS+1)"
+	line 48, "pan_in", state 30, "count[_pid] = (count[_pid]+1)"
+	line 49, "pan_in", state 31, "assert((KS==1))"
+	line 50, "pan_in", state 32, "KS = (KS-1)"
+	line 53, "pan_in", state 33, "flag[_pid] = 2"
+	line 59, "pan_in", state 40, "-end-"
+	(7 of 40 states)
+0.00user 0.00system 0:00.00elapsed 57%CPU (0avgtext+0avgdata 11552maxresident)k
+0inputs+0outputs (0major+747minor)pagefaults 0swaps
+

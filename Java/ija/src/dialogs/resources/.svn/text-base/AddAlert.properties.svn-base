@@ -1,0 +1,16 @@
+jLabel1.text=Addition of alert:
+jLabel5.text=Repeatable:
+jLabel4.text=Interval:
+jLabel3.text=Date:
+jLabel12.text=y
+jLabel11.text=m
+jLabel10.text=d
+jLabel9.text=h
+jRadioButton1.text=Yes
+jRadioButton2.text=No
+jLabel16.text=y
+jLabel15.text=m
+jLabel14.text=d
+jLabel13.text=h
+jButton1.text=Close
+jButton2.text=Confirm

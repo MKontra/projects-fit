@@ -1,0 +1,2 @@
+30.11.2011 20:21:35 kriz.KrizControllerAgent setup
+INFO: Controller commences function

@@ -1,0 +1,123 @@
+
+int n;
+int k;
+int nFaktorial;
+int kFaktorial;
+int nMinusKFaktorial;
+int kombinacniCislo;
+int pomocna;
+
+int main()
+{
+  n = (0);
+  while (n < 1)
+  {
+    cout << "Zadejte prirozene cislo n pro rozvoj vzorce (a + b)^n\n";
+    cin >> n;
+    if (n < 1)
+    {
+      cout << "Cislo musi byt prirozene\n";
+    }
+    else
+    {
+    }
+  }
+  
+  k = 0;
+
+  cout << "(a + b)^" << n << " = ";
+
+  while (k <= n)
+  {
+    /* vypocitame hodnotu kombinacniho cisla n nad k */
+    pomocna = k;
+    kFaktorial = 1;
+    while (pomocna > 0)
+    {
+      kFaktorial = (kFaktorial * pomocna);
+      pomocna = (pomocna - 1);
+    }
+
+    pomocna = n;
+    nFaktorial = 1;
+    while (pomocna > 0)
+    {
+      nFaktorial = (nFaktorial * pomocna);
+      pomocna = (pomocna - 1);
+    }
+    
+    pomocna = (n - k);
+    nMinusKFaktorial = 1;
+    while (pomocna > 0)
+    {
+      nMinusKFaktorial = (nMinusKFaktorial * pomocna);
+      pomocna = (pomocna - 1);
+    }
+
+    /* Nyni spocitame hodnotu kombinacniho cisla */
+    kombinacniCislo = 0;
+    while (nFaktorial > 0)
+    {
+      nFaktorial = (nFaktorial - kFaktorial * nMinusKFaktorial);
+      kombinacniCislo = (kombinacniCislo + 1);
+    }
+
+    if (kombinacniCislo > 1)
+    {
+      cout << kombinacniCislo << "*";
+    }
+    else
+    {
+    }
+    
+    if (n - k == 0)
+    {
+       cout << "";
+    }
+    else
+    {
+      if (n - k == 1)
+      {
+         cout << "a";
+      }
+      else
+      {
+         cout << "a^" << (n - k);
+      }
+    }
+       
+    if ((n != k) * (k != 0))
+    {
+       cout << "*";
+    }
+    else
+    {
+    }
+    
+    if (k == 0)
+    {
+       cout << ("");
+    }
+    else
+    {
+      if (k == 1)
+      {
+         cout << ("b");
+      }
+      else
+      {
+         cout << "b^" << k;
+      }
+    }
+    
+    k = (k + 1);
+    if (k <= n)
+    {
+      cout << " + ";
+    }
+    else
+    { 
+      cout << "\n";
+    }
+  }
+}

@@ -1,0 +1,349 @@
+package COMMON;
+
+import COMMON.Event_alert;
+import java.util.*;
+import org.jdom.*;
+import java.text.*;
+
+/**
+ * Represents event in calendar. It is used by Callendar class, which contains array of such objects.
+ * @author Ivan Homoliak
+ */
+public class Callendar_event {
+
+     /**
+      * Constant which represents meeting category of event
+      */
+     public static final int MEETING = 101;
+     /**
+      * Constant which represents task category of event
+      */
+     public static final int TASK = 102;
+     /**
+      * Constant which represents anniversary category of event
+      */
+     public static final int ANNIVERSARY = 103;
+     /**
+      * Constant which represents other category of event
+      */
+     public static final int OTHER = 104;
+     /**
+      * Represents name of event.
+      */
+     protected String Event_name;
+     /**
+      * Represent date of event.
+      */
+     protected Date date;
+     /**
+      * Represents whether event is repetable.
+      */
+     protected Boolean repeating = new Boolean(false); //opakujuca sa 
+     /**
+      * Represents interval, how often to repeat event.
+      */
+     protected Integer how_often = new Integer(0); //???????????????
+     /**
+      * Represents category of event.
+      */
+     protected int category; //kategoria udalosti
+     /**
+      * List of notices which are asociated which event
+      */
+     protected List<Event_notice> notices = new ArrayList<Event_notice>();
+     /**
+      * List of alerts which are asociated which event. 
+      */
+     protected List<Event_alert> alerts = new ArrayList<Event_alert>();
+
+     public Callendar_event() {
+     }
+
+     public Callendar_event(String n, Date d, Boolean r, int o, int c) {
+	  Event_name = n;
+	  date = d;
+	  repeating = r;
+	  how_often = o;
+	  category = c;
+     }
+
+     /**
+      * Sets list of alerts to list specified in parameter.
+      * @param l
+      */
+     public void set_alerts(List<Event_alert> l) {
+	  this.alerts = l;
+     }
+
+     /**
+      * Returns list of alert asociated to gorup object.
+      * @return
+      */
+     public List<Event_alert> get_alerts() {
+	  return this.alerts;
+     }
+
+     /**
+      * Removes alert from list of alerts in event object.
+      * @param a Event_alert type representation of alert.
+      */
+     public void remove_alert(Event_alert a) {
+	  this.alerts.remove(a);
+     }
+
+     /**
+      * Adds alert to list of alerts in event object.
+      * @param a Event_alert type representation of alert.
+      */
+     public void add_alert(Event_alert a) throws Exception {
+	  if (alerts.contains(a)) {
+	       throw new Exception("Alert cannot be added to event becouse it allready exits");
+	  }
+	  this.alerts.add(a);
+     }
+
+     /**
+      * Sets the name of event to name specified in parameter.
+      * @param name string representation of event name.
+      */
+     public void set_name(String name) {
+	  Event_name = name;
+     }
+
+     /**
+      * Returns name of event.
+      * @return string representation of event's name.
+      */
+     public String get_name() {
+	  return Event_name;
+     }
+
+     /**
+      * Sets the repeating of event to value specified in parameter.
+      * @param r boolean representaiton of repeating.
+      */
+     public void set_repeating(boolean r) {
+	  repeating = r;
+     }
+
+     /**
+      * Sets the category of event to category specified in parameter.
+      * @param r integer representaiton of category. 
+      */
+     public void set_category(int r) {
+	  category = r;
+     }
+
+     /**
+      * Sets how often to repeat event.
+      * @param r integer representation of interval.
+      */
+     public void set_how_often(int r) {
+	  how_often = r;
+     }
+
+     /**
+      * Return repeating status of event object.
+      * @return true if event is repeating, false otherwise.
+      */
+     public boolean get_repeating() {
+	  return repeating;
+     }
+
+     /**
+      * Returns interval of repeating event. 
+      * @return integer representation of interval. Zero if event is not repeatable.
+      */
+     public int get_how_often() {
+	  return how_often;
+     }
+
+     /**
+      * Return integer representation of category of event object.
+      * @return integer representation of category of event object.
+      */
+     public int get_category() {
+	  return category;
+     }
+
+     /**
+      * Returns list of notices asociated with event object.
+      * @return list of notices object.
+      */
+     public List<Event_notice> get_notices() {
+	  return notices;
+     }
+
+     /**
+      * Sets the even's date and time to specified values in parameters.
+      * @param y integer representation of year.
+      * @param m integer representation of month.
+      * @param d integer representation of date.
+      * @param h integer representation of hour.
+      */
+     public void set_Event_date_and_time(int y, int m, int d, int h) {
+	  date.setYear(y);
+	  date.setMonth(m);
+	  date.setHours(h);
+	  date.setDate(d);
+     }
+
+     /**
+      * Sets the date of event
+      * @param d Date representation of date.
+      */
+     public void set_date(Date d) {
+	  date = d;
+     }
+
+     /**
+      * Returns Date representation of event's date.
+      * @return Date object, representation of event's date.
+      */
+     public Date get_Event_date_and_time() {
+	  return date;
+     }
+
+     /**
+      * Adds notice specified in parameter to list of notices of event object.
+      * @param e Event_notice representaiton of notice.
+      */
+     public void  add_notice(Event_notice e) throws Exception {
+	  if (notices.contains(e)) {
+	       throw new Exception("Notice cannot be added to event becouse it allready exists.");
+	  }
+	  notices.add(e);
+     }
+
+     /**
+      * Removes notice specified in parameter from event object.
+      * @param e Event_notice representation of notice.
+      */
+     public void remove_notice(Event_notice e) {
+	  notices.remove(e);
+     }
+     //metoda vrati XML reprezentaciu udalosti
+     /**
+      * Returns XML Element representation of Event object.
+      * @return XML Element representation of Event object.s
+      */
+     public Element toXML() {
+	  //popridavanie eventov
+	  Element event = new Element("Event");
+	  event.setAttribute("Name", this.get_name());
+	  event.setAttribute("Date", Long.toString(this.get_Event_date_and_time().getTime()));
+	  event.setAttribute("Repeating", Boolean.toString(this.get_repeating()));
+	  event.setAttribute("How_often", Integer.toString(this.get_how_often()));
+	  event.setAttribute("Category", Integer.toString(this.get_category()));
+
+	  //musime este preiterovat vsetkymi poznamkami a tie zaznamenat u kazdej udalosti
+	  Element notes = new Element("Notices");
+	  event.addContent(notes);
+	  for (Event_notice n : this.get_notices()) {
+	       Element notice = n.toXML();
+	       notes.addContent(notice);
+	  }
+	  //takisto je potrebne preiterovat vsetkymi alertami
+	  Element alrts = new Element("Alerts");
+	  event.addContent(alrts);
+	  for (Event_alert a : this.get_alerts()) {
+	       Element allrt = a.toXML();
+	       alrts.addContent(allrt);
+	  }
+
+	  return event;
+     }
+
+     /** 
+      * Returns Callendar_event representation of XML Element object specidied in parameter.
+      * @param  event XML Element representation of event.
+      * @return Callendar_event representation of XML Element object.
+      */
+     public static Callendar_event fromXML(Element event) {
+
+	  String event_name = event.getAttributeValue("Name");
+	  Date event_date = new Date(Long.parseLong(event.getAttributeValue("Date")));
+	  boolean event_repeating = Boolean.parseBoolean(event.getAttributeValue("Repeating"));
+	  int event_how_often = Integer.decode(event.getAttributeValue("How_often"));
+	  int event_category = Integer.decode(event.getAttributeValue("Category"));
+
+	  //vytuiahni attributy
+	  Callendar_event EVENT = new Callendar_event(event_name, event_date, event_repeating, event_how_often, event_category);
+
+	  //vytiahni poznamky a alerty
+	  List notes_and_alerts = event.getChildren();
+	  for (Object o : notes_and_alerts) {
+	       Element e = (Element) o;
+	       if (e.getName().compareTo("Notices") == 0) {
+		    for (Object q : e.getChildren()) {
+			 Element note = (Element) q;
+			 try {
+			      EVENT.add_notice(Event_notice.fromXML(note));
+			 } catch (Exception ex) {
+			      ex.printStackTrace();
+			 }
+		    }
+	       } else { //viem ze sa moze jednat len o alerty
+		    for (Object w : e.getChildren()) {
+			 Element alrt = (Element) w;
+			 try {
+			      EVENT.add_alert(Event_alert.fromXML(alrt));
+			 } catch (Exception ex) {
+			      ex.printStackTrace();
+			 }
+		    }
+	       }
+	  }
+
+	  return EVENT;
+     }
+
+     /**
+      * Prints the content of event object to standard output stream.
+      */
+     public void print_content() {
+
+	  Date d = this.get_Event_date_and_time();
+	  int cat = this.get_category();
+	  boolean r = this.get_repeating();
+	  int h = this.get_how_often();
+	  String meno = this.get_name();
+	  List ns = this.get_notices();
+	  List alrts = this.get_alerts();
+	  String d_t = DateFormat.getDateInstance().format(d) + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+	  System.out.printf("\tEvent. Date: %s Category: %d Repeat: %b Often: %d Name: %s \n", d_t, cat, r, h, meno);
+
+	  Iterator ri = ns.iterator();
+	  while (ri.hasNext()) {
+	       Event_notice n = (Event_notice) ri.next();
+	       n.print_content();
+	  }
+	  Iterator it = alrts.iterator();
+	  while (it.hasNext()) {
+	       Event_alert n = (Event_alert) it.next();
+	       n.print_content();
+	  }
+     }
+
+     /**
+      * Compares Callendar_event object with another.
+      * @param o objest of type Object.
+      * @return true if object are equal, false otherwise.
+      */
+     public boolean equals(Object o) {
+	  if (o instanceof Callendar_event) {
+	       Callendar_event ce = (Callendar_event) o;
+	       return this.get_name().equals(ce.get_name());
+	  } else {
+	       return false;
+	  }
+     }
+
+     /**
+      * Returns hash code of Callendar event object, which is delegated to hash code of event's name.
+      * @return integer representation of hash code of Callendar_event object.
+      */
+     public int hashCode() {
+	  return this.get_name().hashCode();
+     }
+}

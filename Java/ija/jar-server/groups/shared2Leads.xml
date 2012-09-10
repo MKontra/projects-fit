@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group Name="shared2Leads" Boss="shared2">
+  <Callendar Name="">
+    <Event Name="group_event" Date="1240956060000" Repeating="false" How_often="0" Category="104">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+</Group>
+

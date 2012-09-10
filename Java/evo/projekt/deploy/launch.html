@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- ########################## IMPORTANT NOTE ############################ -->
+<!-- This preview HTML page will work only with JDK 6 update 10 and higher! -->
+<!-- ###################################################################### -->
+<html>
+    <head>
+        <title>Test page for launching the applet via JNLP</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    </head>
+    <body>
+        <center>
+        <h2>PSO Applet Page</h3>
+        <script src="http://java.com/js/deployJava.js"></script>
+        <script>
+            var attributes = {
+                code:       "org.PSOApplet.PSODemoApplet",
+                archive:    "PSOApplet.jar, lib/org.jzy3d-0.8.3.jar, lib/PSOlib.jar",
+                width:      600,
+                height:     400
+            };
+            var parameters = {jnlp_href:"launch.jnlp"}; <!-- Applet Parameters -->
+            var version = "1.5"; <!-- Required Java Version -->
+            deployJava.runApplet(attributes, parameters, version);
+        </script>
+        </center>
+        <!-- Or use the following applet element to launch the applet using jnlp_href -->
+        <!--
+        <applet width="600" height="400">
+            <param name="jnlp_href" value="launch.jnlp"/>
+        </applet>
+        -->
+        <p>
+        Toto je applet ktory demonstruje funkcnost casticovych optimalizacnych technik<br/>
+        V lavej casti okna appletu je miesto kde sa zobrazi scena s funkciou, pohlad v tomto okne možno modifikovat tahom mišy<br/>
+        V pravej casti okna možno nastavit parametre PSO a zobrazenú funkciu. Po vybratí funkcie je nutné zamacknút tlacidlo 
+        "Set Function", ktoré zobrazí danú funkciu a vloží ju do okna. V pravej dolnej casti je možné nastavit parametre PSO a to hodnotu omega, fí p, fí g. Popis týchto hodnôt je v teoretickej casti.
+        Posledným parametrom je prestoj medzi krokmi algoritmu a zároven prekreslenia. Nakolko táto hodnota ovplivnuje aj renderovacie cykly, neodporúcam používat extrémne nízke hodnoty
+        <br/>
+        <br/>
+        <h2> Co je/sú PSO - casticové optimalizacné techniky ? </h2>
+        Metódy objavené štúdiom správania sa sociálnych živocíchov v prírode (vtáky). Problém je riešený iteratívnim vylepšovaním pozícii kandidátnych riešení,
+        reprezentoaných casticami. Tieto sa pohybujú podla jednoduchých vzorcov udávajúcich ich rýchlost a tým zároven pozíciu
+        <h3>Parametre PSO</h3>
+        Velkost populácie - udáva pocet castíc, ktoré prehladávajú priestor.</br>
+        omega - hybnost/dynamickost castice - udáva kolko zo svojej rýchlosti si castica udrží v dalšom kroku</br>
+        phi p - náchylnost castice hýbat sa k svojej doterajšej najlepšej pozícii</br>
+        phi g - náchylnost castice hýbat sa k doterajšej najlepšej pozícii zpomedzi pozícii všetkých castíc</br>
+        </p>
+    </body>
+</html>

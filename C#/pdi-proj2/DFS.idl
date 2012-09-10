@@ -1,0 +1,24 @@
+module DFS {
+  typedef sequence<string> FileList;
+  typedef sequence<string> NodeList;
+  typedef sequence<octet,1024> FileContent;
+  interface DFSaccess {
+    exception AddFileException{};
+    exception RemoveFileException{};
+    exception GetFileException{};
+    void addFile(in string filename, in FileContent content) raises(AddFileException);
+    void removeFile(in string filename) raises (RemoveFileException);
+    FileContent getFile(in string filename) raises (GetFileException);
+    FileList getFileList();
+
+ };
+  interface DFSmanager {
+    exception AddNodeException{};
+    exception RemoveNodeException{};
+    NodeList listNodes();
+    void addNode(in string nodename) raises(AddNodeException);
+    void removeNode(in string nodename) raises(RemoveNodeException);
+    oneway void shutdownDFS();
+  };
+};
+

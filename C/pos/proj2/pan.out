@@ -1,0 +1,42 @@
+Depth=    1664 States=   1e+06 Transitions= 2.44638e+06 Memory= 29.553
+Depth=    1664 States=   2e+06 Transitions= 5.04979e+06 Memory= 54.436
+Depth=    1664 States=   3e+06 Transitions= 7.67316e+06 Memory= 80.958
+Depth=    1664 States=   4e+06 Transitions= 1.03029e+07 Memory= 106.353
+Depth=    1664 States=   5e+06 Transitions= 1.29762e+07 Memory= 130.622
+Depth=    1664 States=   6e+06 Transitions= 1.56244e+07 Memory= 157.144
+Depth=    1664 States=   7e+06 Transitions= 1.82619e+07 Memory= 182.232
+Depth=    1664 States=   8e+06 Transitions= 2.09304e+07 Memory= 207.115
+Depth=    1664 States=   9e+06 Transitions= 2.35923e+07 Memory= 234.046
+Depth=    1664 States=   1e+07 Transitions= 2.62257e+07 Memory= 258.929
+Depth=    1664 States= 1.1e+07 Transitions= 2.88816e+07 Memory= 283.505
+Depth=    1664 States= 1.2e+07 Transitions= 3.1565e+07 Memory= 308.593
+(Spin Version 4.2.6 -- 27 October 2005)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+
+	assertion violations	+ (if within scope of claim)
+	non-progress cycles 	+ (fairness enabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 68 byte, depth reached 1664, errors: 0
+4.41498e+06 states, stored (1.24085e+07 visited)
+2.02935e+07 states, matched
+3.27019e+07 transitions (= visited+matched)
+       0 atomic steps
+hash conflicts: 7.17123e+07 (resolved)
+
+Stats on memory usage (in Megabytes):
+335.539	equivalent memory usage for states (stored*(State-vector + overhead))
+317.800	actual memory usage for states (compression: 94.71%)
+	State-vector as stored = 64 byte + 8 byte overhead
+2.097 	memory used for hash table (-w19)
+0.320 	memory used for DFS stack (-m10000)
+0.010 	other (proc and chan stacks)
+0.155 	memory lost to fragmentation
+320.062	total actual memory usage
+
+unreached in proctype P
+	(0 of 40 states)
+44.87user 0.47system 0:49.96elapsed 90%CPU (0avgtext+0avgdata 1251920maxresident)k
+0inputs+0outputs (0major+78270minor)pagefaults 0swaps

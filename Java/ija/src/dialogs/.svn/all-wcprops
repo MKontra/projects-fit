@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/euprojects/!svn/ver/157/kalendar/src/dialogs
+END
+EventList.form
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/136/kalendar/src/dialogs/EventList.form
+END
+AddOrEditNotice.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/euprojects/!svn/ver/151/kalendar/src/dialogs/AddOrEditNotice.java
+END
+AddAlert.form
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/128/kalendar/src/dialogs/AddAlert.form
+END
+ViewAlert.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/149/kalendar/src/dialogs/ViewAlert.java
+END
+AddGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/156/kalendar/src/dialogs/AddGroup.java
+END
+AddGroupEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/euprojects/!svn/ver/152/kalendar/src/dialogs/AddGroupEvent.java
+END
+ConnectionOptions.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/euprojects/!svn/ver/153/kalendar/src/dialogs/ConnectionOptions.java
+END
+CopyEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/154/kalendar/src/dialogs/CopyEvent.java
+END
+AddEvent.form
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/128/kalendar/src/dialogs/AddEvent.form
+END
+ViewEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/152/kalendar/src/dialogs/ViewEvent.java
+END
+ViewNotice.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/euprojects/!svn/ver/149/kalendar/src/dialogs/ViewNotice.java
+END
+EventList.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/152/kalendar/src/dialogs/EventList.java
+END
+AddAlert.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/152/kalendar/src/dialogs/AddAlert.java
+END
+AddOrEditNotice.form
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/euprojects/!svn/ver/111/kalendar/src/dialogs/AddOrEditNotice.form
+END
+ViewAlert.form
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/125/kalendar/src/dialogs/ViewAlert.form
+END
+Register.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/155/kalendar/src/dialogs/Register.java
+END
+GroupMan.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/157/kalendar/src/dialogs/GroupMan.java
+END
+AddGroupEvent.form
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/euprojects/!svn/ver/128/kalendar/src/dialogs/AddGroupEvent.form
+END
+AddEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/152/kalendar/src/dialogs/AddEvent.java
+END
+ConnectionOptions.form
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/euprojects/!svn/ver/125/kalendar/src/dialogs/ConnectionOptions.form
+END
+CopyEvent.form
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/125/kalendar/src/dialogs/CopyEvent.form
+END
+ViewEvent.form
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/126/kalendar/src/dialogs/ViewEvent.form
+END
+ViewNotice.form
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/euprojects/!svn/ver/125/kalendar/src/dialogs/ViewNotice.form
+END

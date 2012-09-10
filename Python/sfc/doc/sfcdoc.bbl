@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{heaton}
+Jeff Heaton.
+\newblock Escaping local minima with genetic and simulated annealing
+  algorithms.
+
+\bibitem{sabp}
+Randall~S. Sexton, Robert~E. Dorsey, and John~D. Johnson.
+\newblock Beyond backpropagation: Using simulated annealing for training neural
+  networks.
+
+\end{thebibliography}

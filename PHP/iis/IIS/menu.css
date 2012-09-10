@@ -1,0 +1,32 @@
+body{behavior:url(./cssHoverFix.htc);}
+#navigation {width:150px; font-size:12px;}
+
+/*Main Menu*/
+#navigation ul {margin:0px; padding:0px; background-color:#666;}
+
+#navigation ul li {
+height:25px;
+line-height:25px; 
+list-style:none; 
+padding-left:10px;
+
+color:#FFF; 
+border-top:#fff solid; 
+border-bottom:#fff solid; 
+border-width:1px;
+cursor:pointer; 
+}
+#navigation ul li:hover {background-color:#F90; position:relative;}
+
+/*Sub Menu*/
+#navigation ul ul {display:none; position:absolute; left:75px; top:5px; border:#fff solid; border-width:1px; background-color:#999; }
+#navigation ul li:hover ul {display:block;}
+
+#navigation ul ul li { width:150px; float:left; display:inline; border:none;}
+#navigation ul ul li:hover {text-decoration:underline; border:none;}
+
+#navigation li:hover ul li ul {display:none;}
+
+#navigation ul ul li ul {left:110px; background-color:#0099CC;}
+#navigation ul ul li:hover ul {display:block;}
+

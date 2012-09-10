@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group Name="indiani kmen Watchutov" Boss="Chikaka">
+  <Callendar Name="Kalendar 1">
+    <Event Name="xhomol11" Date="1240654138953" Repeating="false" How_often="0" Category="101">
+      <Notices>
+        <Notice Author="xhomol11" Time_entered="1240654138896">bla bla</Notice>
+        <Notice Author="xkontr00" Time_entered="1240654138896">dlheeeeeeeeeeeee telo poznamky2</Notice>
+      </Notices>
+      <Alerts>
+        <Alert Start="1240654138957" Repeatable="true" Interval="5" />
+        <Alert Start="1240654138958" Repeatable="false" Interval="2" />
+      </Alerts>
+    </Event>
+    <Event Name="xhomol11" Date="1240654138958" Repeating="false" How_often="0" Category="103">
+      <Notices>
+        <Notice Author="xbenco00" Time_entered="1240654138958">dlheeeeeeeeeeeee telo poznamky</Notice>
+        <Notice Author="xbenco00" Time_entered="1240654138958">dlheeeeeeeeeeeee telo poznamky</Notice>
+      </Notices>
+      <Alerts />
+    </Event>
+  </Callendar>
+</Group>
+

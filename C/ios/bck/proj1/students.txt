@@ -1,0 +1,5 @@
+Adamcova Lucie;xadamc00;22;16;5;6;1;50
+Adamek Lukas;           xadame15;26;12;5;6;2;51
+Adamek Jan;xadame16;31;12;5;6;1;55
+Adamec Samuel; xadame17;27;2;16;6;1;52
+Aloman Joseph;xaloma00;19;12;5;6;13;55

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/euprojects/!svn/ver/158/kalendar/src/client
+END
+ClientController.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/euprojects/!svn/ver/155/kalendar/src/client/ClientController.java
+END
+ClientGUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/euprojects/!svn/ver/158/kalendar/src/client/ClientGUI.java
+END
+CommunicationHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/euprojects/!svn/ver/146/kalendar/src/client/CommunicationHandler.java
+END
+NetworkClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/euprojects/!svn/ver/142/kalendar/src/client/NetworkClient.java
+END
+Alerter.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/euprojects/!svn/ver/155/kalendar/src/client/Alerter.java
+END
+Client.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/euprojects/!svn/ver/151/kalendar/src/client/Client.java
+END
+LocalCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/euprojects/!svn/ver/157/kalendar/src/client/LocalCache.java
+END

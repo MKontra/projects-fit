@@ -1,0 +1,311 @@
+/*
+	filename: tail.c
+	meno: Kontra Matus	
+	fakulta: FIT
+	uloha: 2 - A
+	17.4.2008
+	compiler: GCC-4.2.3
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdarg.h>
+
+// struktury fronty
+
+typedef struct entry *p_entry_t;
+
+typedef struct entry
+{
+  char *line;
+  p_entry_t next;
+} entry_t;
+
+typedef struct queue
+{
+  p_entry_t first, last;
+} queue_t, *p_queue_t;
+
+//pomocne funkcie
+
+void
+Error (const char *fmt, ...)
+{
+  va_list vl;
+
+  va_start (vl, fmt);
+  fprintf (stderr, "CHYBA: ");
+  vfprintf (stderr, fmt, vl);
+  va_end (vl);
+
+  exit (1);
+}
+
+int
+read_line (char **line, FILE * stream)
+{
+  *line = NULL;
+  int c;
+  int i = 0;
+  c = getc (stream);
+  if (c == EOF)
+    {
+      return -1;
+    }
+  else
+    {
+      ungetc (c, stream);
+    }
+
+  if ((c = getc (stream)) == '\n')
+    {
+      *line = malloc (4);
+      *line[0] = '\0';
+      return 0;
+    }
+  else
+    {
+      ungetc (c, stream);
+    }
+
+  while (((c = getc (stream)) != EOF) && (c != '\n'))
+    {
+      if ((i % 16) == 0)
+	{
+	  *line = realloc (*line, i + 17);
+	  if (*line == NULL)
+	    {
+	      return -1;
+	    }
+	}
+
+      *(*(line) + i) = c;
+      i++;
+    }
+
+
+  *(*(line) + i) = '\0';
+  return 0;
+}
+
+char *
+popfront_line (p_queue_t queue);
+
+void
+pushback_line (p_queue_t queue, char *input);	//deklaracie pre prekladac...
+
+// funkcie na pracu s nou
+
+void
+queue_init (p_queue_t queue)
+{
+  queue->first = NULL;
+  queue->last = NULL;
+}
+
+//uvolni frontu
+
+int
+free_queue (p_queue_t queue)
+{
+  char *tmp;
+  while ((tmp = popfront_line (queue)) != NULL)
+    {
+      free (tmp);
+    }
+  return 0;
+}
+
+//vypise a uvolnuje
+
+int
+dump_and_free (p_queue_t queue)
+{
+  char *tmp;
+  while ((tmp = popfront_line (queue)) != NULL)
+    {
+      puts (tmp);
+      free (tmp);
+    }
+  return 0;
+}
+
+
+//vlozi objekt na koniec
+
+void
+pushback_line (p_queue_t queue, char *input)
+{
+
+if (input == NULL ) return;
+
+  p_entry_t entry_new = (p_entry_t) malloc (sizeof (entry_t));
+
+if (entry_new == NULL )
+{
+free_queue ( queue );
+Error ( "Zlyhala alokacia pamete \n" );
+}
+
+  entry_new->line = (char *) malloc (sizeof (char) * (strlen (input) + 1));
+
+if ( entry_new->line == NULL )
+{
+free ( entry_new );
+free_queue ( queue );
+Error ( "Zlyhala alokacia pamete \n" );
+}
+
+  strcpy (entry_new->line, input);
+
+  entry_new->next = NULL;
+  if (queue->first == NULL)
+    {
+      queue->first = entry_new;
+      queue->last = entry_new;
+    }
+  else
+    {
+      queue->last->next = entry_new;
+      queue->last = entry_new;
+    }
+}
+
+//vytiahne z predu
+
+char *
+popfront_line (p_queue_t queue)
+{
+  char *tmp;
+  p_entry_t newfirst;
+
+  if (queue->first == NULL)
+    return NULL;
+  newfirst = queue->first->next;
+  tmp = queue->first->line;
+  free (queue->first);
+  queue->first = newfirst;
+
+  return tmp;
+}
+
+
+
+
+//funkcia na vypis + tj od daneho riadku
+
+int
+from_line (int num, char *path)
+{
+  int inx = 0;
+  char *curr = NULL;
+  FILE *src_file;
+  if (path != NULL)
+    {
+      src_file = fopen (path, "r");
+      if (src_file == NULL)
+	Error ("Neexistujuci subor");
+    }
+  else
+    {
+      src_file = stdin;
+    }
+  queue_t fronta;
+  queue_init (&fronta);
+
+// ak najdeme pozadovny riadok zacneme strkat veci do fronty
+
+  while (read_line (&curr, src_file) == 0)
+    {
+
+
+      if (inx >= num)
+	{
+	  pushback_line (&fronta, curr);
+
+
+	}
+      free (curr);
+      inx++;
+    }
+
+  fclose (src_file);
+  dump_and_free (&fronta); // vypiseme obsah a uvolnime pamet
+  return (0);
+}
+
+int
+last_lines (int num, char *path)
+{
+  int inx = 0;
+  char *curr = NULL;
+  FILE *src_file;
+  if (path != NULL)
+    {
+      src_file = fopen (path, "r");
+      if (src_file == NULL)
+	Error ("Neexistujuci subor");
+    }
+  else
+    {
+      src_file = stdin;
+    }
+
+  queue_t fronta;
+  queue_init (&fronta);
+
+// priebezne udrzujeme vo fronte pozadovny pocet zaznamov
+
+  while (read_line (&curr, src_file) == 0)
+    {
+
+      pushback_line (&fronta, curr);
+      free (curr);
+      if (inx >= num)
+	{
+	  char *tmp = popfront_line (&fronta);
+	  free (tmp);
+	}
+      inx++;
+    }
+
+  fclose (src_file);
+  dump_and_free (&fronta); // vypiseme obsah a uvolnime pamet
+  return (0);
+}
+
+
+int
+main (int argc, char *argv[])
+{
+  int i;
+  char *c;
+  if (argc == 1)
+    last_lines (10, NULL);
+  else if (argc >= 2 && argc <= 3)
+    {
+      i = (int) strtol (argv[1], &c, 10);
+      if (*c != '\0')
+	{
+	  argc == 2 ? (last_lines (10, argv[1]), 0) : (Error ("Neplatna prikazova riadka\n"), 0);
+	}
+      else
+	{
+	  if (i > 0 && *argv[1] == '+')
+	    from_line (i, argc == 2 ? NULL : argv[2]);
+	  else if (i == 0 && argc == 2)
+	    *argv[1] == '-' ? (last_lines (0, NULL)) : (from_line (0, NULL));
+	  else if (i == 0 && argc == 3)
+	    *argv[1] == '-' ? (last_lines (0, argv[2])) : (from_line (0, argv[2]));
+	  else if (i < 0)
+	    last_lines (i * (-1), argc == 2 ? NULL : argv[2]);
+	  else	Error ("Neplatna prikazova riadka\n");
+	}
+    }
+  else
+    Error ("Prilis vela argumentov\n");
+
+  return EXIT_SUCCESS;
+
+}

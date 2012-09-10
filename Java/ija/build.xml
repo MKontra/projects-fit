@@ -1,0 +1,82 @@
+<project basedir=".">
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+	<target name="compile">
+		<mkdir dir="build/"/>
+		<javac srcdir="src" destdir="build/">
+			<classpath>
+     			<pathelement location="jdom.jar" />
+			<pathelement location="BL.jar" />
+    			</classpath>
+		</javac>
+		
+		<mkdir dir="jar-server/"/>
+				<jar destfile="jar-server/server.jar"
+						basedir="build/">
+					<manifest>
+						<attribute name="Main-Class"
+							value="myserver.Server"/>
+					</manifest>
+				</jar>
+		<mkdir dir="jar-server/users"/>
+		<copy todir="jar-server/users">
+			<fileset dir="default-contents/users"/>
+		</copy>
+				
+		<mkdir dir="jar-server/groups"/>
+		<copy todir="jar-server/groups">
+			<fileset dir="default-contents/groups"/>
+		</copy>
+		
+		<copy file="BL.jar" tofile="jar-server/BL.jar"/>	
+		<copy file="jdom.jar" tofile="jar-server/jdom.jar"/>	
+		<copy file="mySrvKeystore" tofile="jar-server/mySrvKeystore"/>	
+		
+		<mkdir dir="jar-client/"/>
+			<jar destfile="jar-client/client.jar"
+				     basedir="build/">
+					<manifest>
+						<attribute name="Main-Class"
+							   value="client.Client"/>
+					</manifest>
+				</jar>
+				
+		<mkdir dir="jar-client/cusers"/>
+			<copy todir="jar-client/cusers">
+				<fileset dir="default-contents/cusers"/>
+			</copy>
+
+			
+		<mkdir dir="jar-client/cgroups"/>
+			<copy todir="jar-client/cgroups">
+				<fileset dir="default-contents/cgroups"/>
+			</copy>
+		<copy file="help.html" tofile="jar-client/help.html"/>
+		<copy file="BL.jar" tofile="jar-client/BL.jar"/>	
+		<copy file="jdom.jar" tofile="jar-client/jdom.jar"/>	
+		<copy file="mySrvKeystore" tofile="jar-client/mySrvKeystore"/>	
+				
+	</target>
+	
+	<target name="client">
+		<java classname="client.Client" dir="jar-client" fork="true">
+			<classpath>
+				<pathelement location="jar-client/jdom.jar"/>
+				<pathelement location="jar-client/BL.jar"/>				
+				<pathelement location="jar-client/client.jar"/>
+    			</classpath>
+		</java>
+	</target>
+	
+	<target name="server">
+		<java classname="myserver.Server" dir="jar-server" fork="true">
+			<classpath>
+				<pathelement location="jar-server/jdom.jar"/>
+				<pathelement location="jar-server/BL.jar"/>				
+				<pathelement location="jar-server/server.jar"/>
+			</classpath>
+		</java>
+	</target>	
+	
+</project>

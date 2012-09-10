@@ -1,0 +1,128 @@
+LOCUS       HSDUT1                  1735 bp    DNA     linear   PRI 28-SEP-1997
+DEFINITION  Homo sapiens dUTPase (DUT) gene, exons 1 and 2.
+ACCESSION   AF018429
+VERSION     AF018429.1  GI:2443575
+KEYWORDS    .
+SEGMENT     1 of 4
+SOURCE      Homo sapiens (human)
+  ORGANISM  Homo sapiens
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Euarchontoglires; Primates; Haplorrhini;
+            Catarrhini; Hominidae; Homo.
+REFERENCE   1  (bases 1 to 1735)
+  AUTHORS   Pearlman,R.E.
+  TITLE     Human genomic nuclear and mitochondria dUTPase gene
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 1735)
+  AUTHORS   Pearlman,R.E.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (11-AUG-1997) Biology, York University, 4700 Keele St.,
+            North York, ONT M3J 1P3, Canada
+FEATURES             Location/Qualifiers
+     source          1..1735
+                     /organism="Homo sapiens"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:9606"
+                     /map="15q15-q21.1"
+     gene            order(<1..1735,AF018430.1:1..1177,AF018431.1:1..45,
+                     AF018432.1:658..732,AF018432.1:884..954,
+                     AF018432.1:1391..>1447)
+                     /gene="DUT"
+     mRNA            join(<282..561,1034..1172,AF018430.1:560..651,
+                     AF018431.1:1..45,AF018432.1:658..732,AF018432.1:884..954,
+                     AF018432.1:1391..>1447)
+                     /gene="DUT"
+                     /product="dUTPase"
+                     /note="alternatively spliced; encodes mitochondrial form
+                     of the protein"
+     CDS             join(282..561,1034..1172,AF018430.1:560..651,
+                     AF018431.1:1..45,AF018432.1:658..732,AF018432.1:884..954,
+                     AF018432.1:1391..1447)
+                     /gene="DUT"
+                     /note="DUT-M; alternatively spliced; mitochondrial form of
+                     the protein; similar to H. sapiens dUTPase encoded by
+                     GenBank Accession Number U90224"
+                     /codon_start=1
+                     /product="dUTPase"
+                     /protein_id="AAB71393.1"
+                     /db_xref="GI:2443580"
+                     /translation="MTPLCPRPALCYHFLTSLLRSAMQNARGTAEGRSRGTLRARPAP
+                     RPPAAQHGIPRPLSSAGRLSQGCRGASTVGAAGWKGELPKAGGSPAPGPETPAISPSK
+                     RARPAEVGGMQLRFARLSEHATAPTRGSARAAGYDLYSAYDYTIPPMEKAVVKTDIQI
+                     ALPSGCYGRVAPRSGLAAKHFIDVGAGVIDEDYRGNVGVVLFNFGKEKFEVKKGDRIA
+                     QLICERIFYPEIEEVQALDDTERGSGGFGSTGKN"
+     exon            <282..561
+                     /gene="DUT"
+                     /note="exon used only in the mitochondrial form of the
+                     protein"
+                     /number=1
+     protein_bind    898..903
+                     /gene="DUT"
+                     /bound_moiety="SP-1"
+     protein_bind    935..943
+                     /gene="DUT"
+                     /bound_moiety="E2F"
+     mRNA            join(<1018..1172,AF018430.1:560..651,AF018431.1:1..45,
+                     AF018432.1:658..732,AF018432.1:884..954,
+                     AF018432.1:1391..>1447)
+                     /gene="DUT"
+                     /product="dUTPase"
+                     /note="alternatively spliced; encodes nuclear form of the
+                     protein"
+     CDS             join(1018..1172,AF018430.1:560..651,AF018431.1:1..45,
+                     AF018432.1:658..732,AF018432.1:884..954,
+                     AF018432.1:1391..1447)
+                     /gene="DUT"
+                     /note="DUT-N; alternatively spliced; nuclear form of the
+                     protein; similar to H. sapiens dUTPase encoded by GenBank
+                     Accession Number U90224"
+                     /codon_start=1
+                     /product="dUTPase"
+                     /protein_id="AAB71394.1"
+                     /db_xref="GI:2443581"
+                     /translation="MPCSEETPAISPSKRARPAEVGGMQLRFARLSEHATAPTRGSAR
+                     AAGYDLYSAYDYTIPPMEKAVVKTDIQIALPSGCYGRVAPRSGLAAKHFIDVGAGVID
+                     EDYRGNVGVVLFNFGKEKFEVKKGDRIAQLICERIFYPEIEEVQALDDTERGSGGFGS
+                     TGKN"
+     exon            <1018..1172
+                     /gene="DUT"
+                     /note="alternative exon used in nuclear form of the
+                     protein"
+                     /number=2
+     exon            1034..1172
+                     /gene="DUT"
+                     /note="alternative exon used in mitochondrial form of the
+                     protein"
+                     /number=2
+ORIGIN      
+        1 tcggaaaaat gggggccaga gcaaacaaga agagcgaaag caagagggct aggcagccag
+       61 aggcggcagc aagactcaag acgccaacgg cgctgtttcc tggggcccca gggcttgcgc
+      121 catccctggg ctgccggggc accgcctctc cacgcccctc gtccggcggc ggctgcgact
+      181 gcttccgagg tcatgttccc aggacgggcg cgtcttcagg gtggaagcct ggcgcacgtc
+      241 cggaggtgcc gaggacccaa ccagcccaaa ctctggggga aatgactccc ctctgccctc
+      301 gccccgcgct ctgctaccat ttccttacgt ctctgcttcg ctcagcgatg caaaacgcgc
+      361 gaggcacggc agagggccga agccgcggta ctctccgggc caggcccgcc cctcggccgc
+      421 cggccgcgca gcacgggatt ccccggccgc tgtccagcgc tggccgcctg agccaaggct
+      481 gccgcggagc cagtacagtc ggggccgctg gctggaaggg cgagcttcct aaggcggggg
+      541 gaagcccggc gccggggccg ggtaggaaag gcgggggagg ggctccggcc gtctggaagg
+      601 aatccaacgc ggcttgaggc tgtggggaag tagggtggcg agcggtcctt ctgcgcgcgg
+      661 ggggccgggg gggtggggtg gtccattagg gtcccctggc gagggggcgg ctttctagtg
+      721 tgtgaaggcg acgccctaga agctcccctt caaagttggc cccacgcgct gaatgtggaa
+      781 agttgactgg gacccagtag tttcccatcc caaacctgct ttccgagaag ggcttcaaac
+      841 ccaaaatgtg aatcccgcct cccctctcag ccagaactgt ggactcgtcc cggggagggg
+      901 cggtgggtgg ggcggggctg gcgggaaatt tcggttttgg cgcgctccct gcggcgacgc
+      961 tcatcgtgcg ctctcctctt cccccggtgg tctcctcgct cgccttctgg ctctgccatg
+     1021 ccctgctctg aagagacacc cgccatttca cccagtaagc gggcccggcc tgcggaggtg
+     1081 ggcggcatgc agctccgctt tgcccggctc tccgagcacg ccacggcccc cacccggggc
+     1141 tccgcgcgcg ccgcgggcta cgacctgtac aggtgagcgg ggacctgccg gcgaggaggc
+     1201 tgggaagggc cggccgtccg ctgccacagc tagaaacagt caccggagag atcacaggaa
+     1261 cacactagct ataaatagga tttctgcctt tttcgtgttt aaaattttag ctttcatctt
+     1321 tggcataaat taaatagaga tttgggcaaa gactgcagaa taagtaaaat agctatacgg
+     1381 tgtctagcaa ggcgttactt tgcaacgttt attgtgccct tcctaaatag aagatagaga
+     1441 ggaaggccca tggtggcttt cgaagtggcc cgagggtgat gctgtgctca atagaaaaac
+     1501 caaggtgaga gcctagatgt gagcgtgaaa atacctaaga aggatgaacg aagatgcatc
+     1561 tgccttaaaa agttatttct atacattcat ccggcccagg gcggaatttg agaagcatct
+     1621 gaaaacgaag gcagactgcc tgtatctacc acactttcat ctctacagca cgttttactg
+     1681 tactaaaact tcccgtatgc tgttgtatag tcctccacac atccctaact agata
+//
+

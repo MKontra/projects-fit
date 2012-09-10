@@ -1,0 +1,56 @@
+CC=gcc
+CPP=g++
+CFLAGS=-g -c -std=c99 -pedantic -Wall
+CPPFLAGS=-c -std=c++98 -pedantic -Wall
+
+HTABLE_SRCS= $(wildcard htable-*.c)
+HTABLE_OBJS= $(HTABLE_SRCS:.c=.o)
+HTABLE_OBJS_DYN = $(HTABLE_OBJS:%.o=dynamic-%.o)
+
+all: tail tail2 htable.a wordcount
+
+dynamic: htable.so wordcount-dynamic
+
+.PHONY : all dynamic clean
+
+tail: tail.o
+	$(CC) -o $@ tail.o
+
+tail2: tail2.o
+	$(CPP) -o $@ tail2.o
+ 
+htable.a: $(HTABLE_OBJS)
+	ar -rcs $@ $(HTABLE_OBJS)	
+
+htable.so: $(HTABLE_OBJS_DYN)
+	gcc -shared -Wl,-soname,htable.so -o htable.so $(HTABLE_OBJS_DYN)
+
+wordcount: wordcount.c io.o htable.a
+	$(CC) -g -std=c99 -pedantic -Wall  wordcount.c io.o  htable.a -o $@
+
+wordcount-dynamic: wordcount.c io.o htable.so
+	$(CC)  -std=c99 -pedantic -Wall -Wl,-rpath,. wordcount.c io.o -L. ./htable.so -o $@
+
+$(HTABLE_OBJS): %.o : %.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(HTABLE_OBJS_DYN): dynamic-%.o: %.c
+	$(CC) $(CFLAGS) -fPIC -o $@ $<
+
+io.o: io.c io.h
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(HTABLE_OBJS): htable.h
+$(HTABLE_OBJS_DYN): htable.h
+
+tail.o: tail.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+tail2.o: tail2.cc
+	$(CPP) $(CPPFLAGS) -o $@ $<
+
+zip:
+	zip xkontr00.zip *.c *.cc *.h makefile
+
+clean:
+	-rm *.o tail tail2 wordcount{,-dynamic} core core.* htable.so htable.a xkontr00.zip

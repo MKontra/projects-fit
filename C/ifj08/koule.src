@@ -1,0 +1,237 @@
+
+int n;
+string pixel;
+double tarx;
+double tary;
+double tarz;
+double rayx;
+double rayy;
+double rayz;
+double lightness;
+double resx;
+double resy;
+double posx;
+double posy;
+double posz;
+double spherex;
+double spherey;
+double spherez;
+double sphereradius;
+double sphereradius2;
+double lightx;
+double lighty;
+double lightz;
+double ocx;
+double ocy;
+double ocz;
+double yiplus1;
+double yi;
+double delta;
+double t;
+double intersectionx;
+double intersectiony;
+double intersectionz;
+double normalx;
+double normaly;
+double normalz;
+double tolightx;
+double tolighty;
+double tolightz;
+double a;
+double b;
+double c;
+double d;
+double x;
+double y;
+double z;
+ 
+int main()
+{
+  cout << "ifj-raytracer, vykresli 3 koule\n";
+  (resx = 70.000000);
+  (resy = 60.000000);
+  (posx = 0.000000);
+  (posy = 0.000000);
+  (posz = (0 - 20.000000));
+  (spherex = 0.000000);
+  (spherey = 0.000000);
+  (spherez = 0.000000);
+  (sphereradius = 4.000000);
+  (lightx = (0 - 5.000000));
+  (lighty = 5.000000);
+  (lightz = (0 - 11.000000));
+  cout << "+";
+  (x = 0.000000);
+  while (x < resx)
+  {
+    cout << "-";
+    (x = (x + 1));
+  }
+ 
+  cout << "+\n";
+  (y = 3.000000);
+  while (y < resy)
+  {
+    cout << "|";
+    (x = 0.000000);
+    while (x < resx)
+    {
+      (tarx = ((1.000000 - ((x * 2.000000) / resx)) * 7.000000));
+      (tary = ((1.000000 - ((y * 2.000000) / resy)) * 5.000000));
+      (tarz = 0.000000);
+      (rayx = (tarx - posx));
+      (rayy = (tary - posy));
+      (rayz = (tarz - posz));
+      (n = 0);
+      (z = 9999.000000);
+      (pixel = " ");
+      while (n < 3)
+      {
+        if (n == 0)
+        {
+          (spherex = (0 - 5.000000));
+          (spherey = (0 - 3.000000));
+          (spherez = 6.000000);
+          (sphereradius = 3.000000);
+        }
+        else
+        {
+          if (n == 1)
+          {
+            (spherex = (0 - 1.000000));
+            (spherey = 1.000000);
+            (spherez = 10.000000);
+            (sphereradius = 5.000000);
+          }
+          else
+          {
+            (spherex = 5.000000);
+            (spherey = (0 - 3.000000));
+            (spherez = 20.000000);
+            (sphereradius = 8.000000);
+          }
+ 
+        }
+ 
+        (sphereradius2 = (sphereradius * sphereradius));
+        (ocx = (posx - spherex));
+        (ocy = (posy - spherey));
+        (ocz = (posz - spherez));
+        (a = (((rayx * rayx) + (rayy * rayy)) + (rayz * rayz)));
+        (b = (2.000000 * (((rayx * ocx) + (rayy * ocy)) + (rayz * ocz))));
+        (c = ((((ocx * ocx) + (ocy * ocy)) + (ocz * ocz)) - sphereradius2));
+        (d = ((b * b) - ((4.000000 * a) * c)));
+        if (d > 0.000000)
+        {
+          (yi = d);
+          (delta = 1.000000);
+          while (delta > 0.000100)
+          {
+            (yiplus1 = (0.500000 * ((d / yi) + yi)));
+            (delta = (yiplus1 - yi));
+            if (delta < 0.000000)
+            {
+              (delta = (0.000000 - delta));
+            }
+            else { }
+ 
+            (yi = yiplus1);
+          }
+ 
+          (d = yi);
+          (t = (((0.000000 - b) - d) / (2.000000 * a)));
+          if (((t > 0.000000) + (t < z)) == 2)
+          {
+            (z = t);
+            (intersectionx = ((rayx * t) + posx));
+            (intersectiony = ((rayy * t) + posy));
+            (intersectionz = ((rayz * t) + posz));
+            (normalx = ((intersectionx - spherex) / sphereradius));
+            (normaly = ((intersectiony - spherey) / sphereradius));
+            (normalz = ((intersectionz - spherez) / sphereradius));
+            (tolightx = (lightx - intersectionx));
+            (tolighty = (lighty - intersectiony));
+            (tolightz = (lightz - intersectionz));
+            (d = (((tolightx * tolightx) + (tolighty * tolighty)) + (tolightz * tolightz)));
+            (yi = d);
+            (delta = 1);
+            while (delta > 0.000100)
+            {
+              (yiplus1 = (0.500000 * ((d / yi) + yi)));
+              (delta = (yiplus1 - yi));
+              if (delta < 0.000000)
+              {
+                (delta = (0.000000 - delta));
+              }
+              else { }
+ 
+              (yi = yiplus1);
+            }
+ 
+            (d = yi);
+            (lightness = ((((normalx * tolightx) + (normaly * tolighty)) + (normalz * tolightz)) / d));
+            if (lightness > 0.900000)
+            {
+              (pixel = "#");
+            }
+            else
+            {
+              if (lightness > 0.700000)
+              {
+                (pixel = "*");
+              }
+              else
+              {
+                if (lightness > 0.500000)
+                {
+                  (pixel = "+");
+                }
+                else
+                {
+                  if (lightness > 0.300000)
+                  {
+                    (pixel = "-");
+                  }
+                  else
+                  {
+                    if (lightness > 0.100000)
+                    {
+                      (pixel = ".");
+                    }
+                    else { }
+ 
+                  }
+ 
+                }
+ 
+              }
+ 
+            }
+ 
+          }
+          else { }
+ 
+        }
+        else { }
+ 
+        (n = (n + 1));
+      }
+ 
+      cout << pixel;
+      (x = (x + 1.000000));
+    }
+ 
+    cout << "|\n";
+    (y = (y + 1.000000));
+  }
+ 
+  cout << "+";
+  (x = 0.000000);
+  while (x < resx)
+  {
+    cout << "-";
+    (x = (x + 1.000000));
+  }
+ 
+  cout << "+\n";
+}

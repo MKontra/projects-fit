@@ -1,0 +1,20 @@
+README
+
+Server sa pusta v tvare "./server [-p cisloportu]", kde parameter specifikuje na ktorom
+porte bude server pocuvat, ak nie je uvedeni defaultnou hodnotou je 8086
+
+Klient sa pusta v tvare "./client -h hostname -p port [-NSLF] [-n name] [-s surname] [-l login] [-f faculty]",
+kde hostname a port su parametre pripojenia, -NSLF urcuje to co, a v akom poradi sa ma vypisovat a ostatne parametre urcuju podmienky.
+Ak neni uvedena ani jeden z vstupnych parametrov vyhladavania program hlasi chybu.
+Parametre pre vypis su pozadovane inak sa nevypise nic. 
+Jednotlyve zaznamy na vystupe su oddelene novym riadkom a polozky bodkociarkou.
+
+Cinnost:
+Server:
+server naskor nacita datbazu do pamete a sparsuje ju na linearny zoznam, potom zacne pocuvat a pre kazdy klient vytvori nove vlakno.
+v tomto vlakne precita od klienta pozadovane informacie a vyhlada ich v zozname a posle klientovy. Vlakno zanika.
+
+Klient:
+Posle serveru dotaz s zadanymi informaciami a caka na odpoved. Tu spraacuje podla parametra a vypise na standardny vystup.
+
+Program nekontroluje ci sa v databaze alebo poziadavku nevyskytuju symboly pouzite ako oddelovace co by mohlo sposobit nespravnu interpretaciu poziadavku/odpovede.

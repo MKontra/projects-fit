@@ -1,0 +1,49 @@
+Jednoduchy TCP/UDP port scanner
+autor:xkontr00
+
+Program je viacvlaknovou implementaciou syn tcp/udp scannera.
+Program sa vola sposobom uvedenym na stranke:
+scan [-i <interface>] -pu <port-ranges> -pt <port-ranges> [<domain-name> | <IP-address> ]
+
+priklad:
+scan portov na localhoste - parametrom i specifikujeme odposluch na loopbacku
+scan -i lo -pu 1-8,22 -pt 22-23,24-26 localhost
+
+scan na fyzickom pc - parameter i urcuje interface na ktorom ocakaveme odpoved od ciela
+scan -i em0 -pu 14,16 -pt 80,100-120 eva.fit.vutbr.cz
+
+ak -i neni specifikovany pouzije sa prvy verejny (pripojeny na fyz kartu) interface - pravdepodobne
+neodchyti localhost
+
+Vypis odpovede programu:
+TCP:
+port => stav
+UDP:
+port => stav
+
+porty su zoradene podla toho ako boli specifikovane vo volani
+
+priklad:
+TCP:
+80 => OPEN
+120 => CLOSED
+121 => CLOSED
+130 => FILTERED
+UDP:
+100 => OPEN
+101 => CLOSED
+
+
+obmedzenie/rozsirenie - program je viacvlaknovy(niekolkonasobne urychlenie scanovania) -
+ak by doslo k ukonceniu z dovodu nedostatku zdrojov je nutne znizit pocet vytvaranych vlakien -
+#define MAXTHREADSUDP n
+#define MAXTHREADSTCP m
+tieto defines sa nachadzaju na vrchu zdrojoveho suboru pod #includes
+pravdepodobne nebude nutne hodnoty su nastavene na dost nizko
+
+Aplikacia bola vyvijana na os linux, i ked bola testovana aj na os bsd, nemozno vylucit, ze mozu nastat
+iste necakane situacie
+
+subory projektu:
+scan.c
+makefile

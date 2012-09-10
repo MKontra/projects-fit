@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdiProjCons", "PdiProjCons\PdiProjCons.csproj", "{F605AFC9-3176-4E59-BE22-176B9F0494E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFSAccessClient", "DFSAccessClient\DFSAccessClient.csproj", "{E3FE8C6E-5683-4B67-B6BA-4522A20C2251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFSManagerClient", "DFSManagerClient\DFSManagerClient.csproj", "{B3498AA2-ECAE-4F87-AC27-D8DCF05B8957}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F605AFC9-3176-4E59-BE22-176B9F0494E4}.Debug|x86.ActiveCfg = Debug|x86
+		{F605AFC9-3176-4E59-BE22-176B9F0494E4}.Debug|x86.Build.0 = Debug|x86
+		{F605AFC9-3176-4E59-BE22-176B9F0494E4}.Release|x86.ActiveCfg = Release|x86
+		{F605AFC9-3176-4E59-BE22-176B9F0494E4}.Release|x86.Build.0 = Release|x86
+		{E3FE8C6E-5683-4B67-B6BA-4522A20C2251}.Debug|x86.ActiveCfg = Debug|x86
+		{E3FE8C6E-5683-4B67-B6BA-4522A20C2251}.Debug|x86.Build.0 = Debug|x86
+		{E3FE8C6E-5683-4B67-B6BA-4522A20C2251}.Release|x86.ActiveCfg = Release|x86
+		{E3FE8C6E-5683-4B67-B6BA-4522A20C2251}.Release|x86.Build.0 = Release|x86
+		{B3498AA2-ECAE-4F87-AC27-D8DCF05B8957}.Debug|x86.ActiveCfg = Debug|x86
+		{B3498AA2-ECAE-4F87-AC27-D8DCF05B8957}.Debug|x86.Build.0 = Debug|x86
+		{B3498AA2-ECAE-4F87-AC27-D8DCF05B8957}.Release|x86.ActiveCfg = Release|x86
+		{B3498AA2-ECAE-4F87-AC27-D8DCF05B8957}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="xhomol11" Name="Ivan" Surname="Homoliak" Password_hash="frer45t45t56y*898^$">
+  <Callendar Name="Kalendar 1">
+    <Event Name="xhomol11" Date="1240655171010" Repeating="false" How_often="0" Category="101">
+      <Notices>
+        <Notice Author="xhomol11" Time_entered="1240655170980">bla bla</Notice>
+        <Notice Author="xkontr00" Time_entered="1240655170980">dlheeeeeeeeeeeee telo poznamky2</Notice>
+      </Notices>
+      <Alerts>
+        <Alert Start="1240655171012" Repeatable="true" Interval="5" />
+        <Alert Start="1240655171012" Repeatable="false" Interval="2" />
+      </Alerts>
+    </Event>
+    <Event Name="xhomol11" Date="1240655171012" Repeating="false" How_often="0" Category="103">
+      <Notices>
+        <Notice Author="xbenco00" Time_entered="1240655171012">dlheeeeeeeeeeeee telo poznamky</Notice>
+        <Notice Author="xbenco00" Time_entered="1240655171012">dlheeeeeeeeeeeee telo poznamky</Notice>
+      </Notices>
+      <Alerts />
+    </Event>
+  </Callendar>
+  <Groups>
+    <Group Name="java developers" Boss="true" />
+    <Group Name="acer users" Boss="false" />
+  </Groups>
+</User>
+

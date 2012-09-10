@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User Login="shared2" Name="shsh" Surname="shsh" Password_hash="shared2">
+  <Callendar Name="">
+    <Event Name="MyRepeating" Date="1240394460000" Repeating="true" How_often="48" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+  <Groups>
+    <Group Name="new_group_name1" Boss="true" />
+    <Group Name="shared2Leads" Boss="false" />
+    <Group Name="shared1leadds" Boss="false" />
+  </Groups>
+</User>
+

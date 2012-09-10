@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group Name="shared1leadds" Boss="shared1">
+  <Callendar Name="">
+    <Event Name="group_enevt1" Date="1240999260000" Repeating="false" How_often="0" Category="101">
+      <Notices>
+        <Notice Author="shared1" Time_entered="1241033227654">dsfujhsdfkhsdkf</Notice>
+        <Notice Author="shared2" Time_entered="1241033624059">defef</Notice>
+      </Notices>
+      <Alerts />
+    </Event>
+    <Event Name="group1repevent" Date="1241092860000" Repeating="false" How_often="50" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+    <Event Name="GroupSimple1" Date="1241042460000" Repeating="false" How_often="0" Category="101">
+      <Notices />
+      <Alerts />
+    </Event>
+  </Callendar>
+</Group>
+

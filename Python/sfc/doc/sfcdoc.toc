@@ -1,0 +1,22 @@
+\select@language {slovak}
+\contentsline {section}{\numberline {1}\IeC {\'U}vod}{2}
+\contentsline {section}{\numberline {2}Teoretick\IeC {\'e} podklady}{2}
+\contentsline {subsection}{\numberline {2.1}Dopredn\IeC {\'a} viacvrstvov\IeC {\'a} neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}{2}
+\contentsline {subsection}{\numberline {2.2}U\IeC {\v c}enie neur\IeC {\'o}novej siete}{3}
+\contentsline {subsubsection}{\numberline {2.2.1}Backpropagation}{3}
+\contentsline {subsubsection}{\numberline {2.2.2}Simulovan\IeC {\'e} \IeC {\v z}\IeC {\'\i }hanie}{3}
+\contentsline {section}{\numberline {3}Implement\IeC {\'a}cia}{4}
+\contentsline {subsection}{\numberline {3.1}Neur\IeC {\'o}nov\IeC {\'a} sie\IeC {\v t}}{4}
+\contentsline {subsection}{\numberline {3.2}Backpropagation trainer}{4}
+\contentsline {subsection}{\numberline {3.3}Anneal trainer}{5}
+\contentsline {section}{\numberline {4}Testy}{7}
+\contentsline {subsection}{\numberline {4.1}Testovanie uviaznutia v lok\IeC {\'a}lnom minime}{7}
+\contentsline {subsection}{\numberline {4.2}Testovanie \IeC {\'u}spe\IeC {\v s}nosti klasifik\IeC {\'a}cie}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}S\IeC {\v c}\IeC {\'\i }tanie}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}N\IeC {\'a}sobenie}{7}
+\contentsline {subsubsection}{\numberline {4.2.3}Podiel}{7}
+\contentsline {subsection}{\numberline {4.3}Zrovnanie v\IeC {\'y}sledkov s Sexton, Dorsey, Johnson: BEYOND BACKPROPAGATION: USING SIMULATED ANNEALING FOR TRAINING NEURAL NETWORKS [2] }{7}
+\contentsline {subsubsection}{\numberline {4.3.1}S\IeC {\v c}\IeC {\'\i }tanie}{7}
+\contentsline {subsubsection}{\numberline {4.3.2}N\IeC {\'a}sobenie}{7}
+\contentsline {subsubsection}{\numberline {4.3.3}Podiel}{8}
+\contentsline {section}{\numberline {5}Z\IeC {\'a}ver}{8}
